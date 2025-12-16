@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Psychometrics Lab
+
+A tool for profiling Large Language Models (LLMs) using standard psychometric inventories and the **Stateless Independent Context Window Approach (SICWA)**.
+
+Built by Gordon Olson.
+
+## Overview
+
+This application allows you to administer personality tests (currently the **Big Five IPIP-NEO-120**) to any LLM via the OpenRouter API. It is designed to eliminate conversational bias by treating every single test item as an independent, stateless request.
+
+## Scoring Methodology
+
+The system uses a rigorous scoring process to ensure accuracy and consistency.
+
+### 1. Item Scoring (1-5)
+*   **Sampling:** For each of the 120 items in the inventory, the system queries the model **5 times**.
+*   **Aggregation:** The final score for an item is the **average** of these 5 independent samples.
+*   *Example:* If the model responds with `4, 5, 4, 4, 5`, the Item Score is `4.4`.
+
+### 2. Reverse Coding
+*   Many items are "negatively keyed" to prevent agreement bias.
+*   *Example:* "Am not interested in other people's problems" (Agreeableness).
+*   **Formula:** `Final Score = 6 - Item Score`
+*   *Result:* A score of `5` (Strongly Agree) becomes `1` (Low Agreeableness).
+
+### 3. Facet Scores (4-20)
+*   Each of the 5 Domains (Neuroticism, Extraversion, Openness, Agreeableness, Conscientiousness) is composed of **6 Facets** (sub-traits).
+*   Each Facet consists of **4 specific items**.
+*   **Formula:** `Facet Score = Sum(4 Item Scores)`
+*   *Range:* Minimum 4, Maximum 20.
+
+### 4. Domain Scores (24-120)
+*   The high-level Domain Score is the sum of its 6 constituent Facet Scores.
+*   **Formula:** `Domain Score = Sum(6 Facet Scores)`
+*   *Range:* Minimum 24, Maximum 120.
+
+### 5. Interpretation
+Scores are classified into three levels based on their position in the possible range (24-120):
+
+*   **Low:** Score < 56
+*   **Medium:** 56 ≤ Score ≤ 88
+*   **High:** Score > 88
 
 ## Getting Started
 
-First, run the development server:
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2.  **Configure environment variables (local only):**
+    *   Copy `.env.example` to `.env.local`.
+    *   Add your values in `.env.local`.
+    *   Do not commit `.env.local`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.  **Run the application:**
+    ```bash
+    npm run dev
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4.  **Open in browser:**
+    Navigate to [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+To deploy this application to the web (using Vercel and Supabase), please see our **[Deployment Guide](DEPLOYMENT.md)**.
+*   **Framework:** Next.js (App Router)
+*   **Styling:** Tailwind CSS
+*   **Charts:** Chart.js / React-Chartjs-2
+*   **API:** OpenRouter
 
-To learn more about Next.js, take a look at the following resources:
+### Environment variable policy (recommended)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is designed so that:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*   **Vercel** only needs Supabase env vars (storage/database).
+*   **OpenRouter keys are user-provided at runtime** via the UI (or via local `.env.local` for development).
 
-## Deploy on Vercel
+Do not set `NEXT_PUBLIC_OPENROUTER_API_KEY` on Vercel unless you explicitly want it embedded in the client bundle.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT. See `LICENSE`.
+
+## Attribution
+
+See `ATTRIBUTION.md`.
+
+## Contributing
+
+See `CONTRIBUTING.md`.
+
+## Security
+
+See `SECURITY.md`.
