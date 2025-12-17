@@ -22,7 +22,7 @@ export default function RootLayout({
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                         <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
                             <img
-                                src="/globe.svg"
+                                src="/logo.png"
                                 alt="AI Psychometrics"
                                 className="h-10 w-auto"
                             />

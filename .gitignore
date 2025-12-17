@@ -35,9 +35,6 @@ tsc_output.txt
 .env*
 !.env.example
 
-# unused binary asset (app uses SVGs)
-/public/logo.png
-
 # vercel
 .vercel
 

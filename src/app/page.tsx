@@ -22,7 +22,7 @@ export default function Home() {
                 <div className="text-center mb-12">
                     <Link href="/" className="inline-block hover:opacity-90 transition-opacity">
                         <img
-                            src="/globe.svg"
+                            src="/logo.png"
                             alt="AI Psychometrics Lab"
                             className="h-24 w-auto mx-auto drop-shadow-sm"
                         />
