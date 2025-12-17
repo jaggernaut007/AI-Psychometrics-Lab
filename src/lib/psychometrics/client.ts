@@ -14,34 +14,91 @@ export async function fetchOpenRouterResponse(
 
         const referer = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
 
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-                "HTTP-Referer": referer, // Optional
-                "X-Title": "AI Psychometric Profiler", // Optional
-            },
-            body: JSON.stringify({
-                model: model,
-                messages: messages,
-                temperature: temperature,
-                max_tokens: 1000,
-            }),
-        });
+        const url = "https://openrouter.ai/api/v1/chat/completions";
+        const headers = {
+            "Authorization": `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+            "HTTP-Referer": referer,
+            "X-Title": "AI Psychometric Profiler",
+        };
 
-        if (!response.ok) {
-            const errorBody = await response.text();
-            throw new Error(`OpenRouter API Error: ${response.status} - ${errorBody}`);
+        const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+        const parseRetryAfterMs = (value: string | null): number | null => {
+            if (!value) return null;
+            const seconds = Number(value);
+            if (!Number.isNaN(seconds) && seconds > 0) return seconds * 1000;
+            const asDate = Date.parse(value);
+            if (!Number.isNaN(asDate)) {
+                const delta = asDate - Date.now();
+                return delta > 0 ? delta : 0;
+            }
+            return null;
+        };
+
+        const MAX_RETRIES = 2;
+        const TIMEOUT_MS = 45_000;
+
+        let lastError: unknown = null;
+        for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers,
+                    signal: controller.signal,
+                    body: JSON.stringify({
+                        model: model,
+                        messages: messages,
+                        temperature: temperature,
+                        max_tokens: 1000,
+                    }),
+                });
+
+                clearTimeout(timeoutId);
+
+                if (!response.ok) {
+                    const status = response.status;
+                    const errorBody = await response.text().catch(() => "");
+                    const retryAfterMs = parseRetryAfterMs(response.headers.get('retry-after'));
+                    const retryable = status === 429 || status === 408 || (status >= 500 && status <= 599);
+
+                    if (attempt < MAX_RETRIES && retryable) {
+                        const backoffMs = Math.min(1000 * Math.pow(2, attempt), 10_000);
+                        const jitterMs = Math.floor(Math.random() * 250);
+                        await sleep(retryAfterMs ?? (backoffMs + jitterMs));
+                        continue;
+                    }
+
+                    throw new Error(`OpenRouter API Error: ${status} - ${errorBody}`);
+                }
+
+                const data = await response.json();
+                if (!data.choices?.[0]?.message?.content) {
+                    console.warn("Empty or missing content in response:", data);
+                    return JSON.stringify(data);
+                }
+                return data.choices[0]?.message?.content;
+            } catch (error: any) {
+                clearTimeout(timeoutId);
+                lastError = error;
+
+                const isAbort = error?.name === 'AbortError';
+                const isNetwork = error instanceof TypeError;
+
+                if (attempt < MAX_RETRIES && (isAbort || isNetwork)) {
+                    const backoffMs = Math.min(1000 * Math.pow(2, attempt), 10_000);
+                    const jitterMs = Math.floor(Math.random() * 250);
+                    await sleep(backoffMs + jitterMs);
+                    continue;
+                }
+
+                throw error;
+            }
         }
 
-        const data = await response.json();
-        if (!data.choices?.[0]?.message?.content) {
-            console.warn("Empty or missing content in response:", data);
-            // Return the full JSON so we can see it in the UI logs
-            return JSON.stringify(data);
-        }
-        return data.choices[0]?.message?.content;
+        throw lastError;
     } catch (error) {
         console.error("API Call Failed:", error);
         throw error;

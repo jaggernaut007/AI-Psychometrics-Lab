@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { fetchOpenRouterResponse } from '../lib/psychometrics/client';
 import { BIG_FIVE_ITEMS, calculateBigFiveScores } from '../lib/psychometrics/inventories/bigfive';
 import { deriveMBTIFromBigFive } from '../lib/psychometrics/inventories/mbti';
@@ -18,9 +18,43 @@ export function usePsychometrics() {
     const [logs, setLogs] = useState<LogEntry[]>([]);
     const [results, setResults] = useState<ModelProfile | null>(null);
 
-    const addLog = (message: string, type: 'info' | 'error' | 'success' = 'info') => {
-        setLogs(prev => [...prev, { timestamp: new Date().toLocaleTimeString(), message, type }]);
-    };
+    const logsBufferRef = useRef<LogEntry[]>([]);
+    const flushTimeoutRef = useRef<number | null>(null);
+
+    const flushLogs = useCallback(() => {
+        if (flushTimeoutRef.current) {
+            window.clearTimeout(flushTimeoutRef.current);
+            flushTimeoutRef.current = null;
+        }
+        if (logsBufferRef.current.length === 0) return;
+        const buffered = logsBufferRef.current;
+        logsBufferRef.current = [];
+        setLogs((prev) => [...prev, ...buffered]);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (flushTimeoutRef.current) {
+                window.clearTimeout(flushTimeoutRef.current);
+                flushTimeoutRef.current = null;
+            }
+        };
+    }, []);
+
+    const addLog = useCallback((message: string, type: 'info' | 'error' | 'success' = 'info') => {
+        logsBufferRef.current.push({ timestamp: new Date().toLocaleTimeString(), message, type });
+
+        if (logsBufferRef.current.length >= 25) {
+            flushLogs();
+            return;
+        }
+
+        if (!flushTimeoutRef.current) {
+            flushTimeoutRef.current = window.setTimeout(() => {
+                flushLogs();
+            }, 200);
+        }
+    }, [flushLogs]);
 
     const runTest = useCallback(async (
         apiKey: string,
@@ -31,6 +65,7 @@ export function usePsychometrics() {
     ) => {
         setIsRunning(true);
         setLogs([]);
+        logsBufferRef.current = [];
         setProgress(0);
         setResults(null);
 
@@ -156,7 +191,8 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Do n
                     rawScores[item.id] = itemScores;
                 }));
 
-                setProgress(i + CHUNK_SIZE);
+                setProgress(Math.min(i + chunk.length, allItems.length));
+                flushLogs();
             }
 
             // Calculate Results
@@ -184,6 +220,7 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Do n
         } catch (error: any) {
             addLog(`Test failed: ${error.message}`, 'error');
         } finally {
+            flushLogs();
             setIsRunning(false);
         }
     }, []);
