@@ -19,7 +19,7 @@ export default function RootLayout({
             <body className={`${inter.className} min-h-screen flex flex-col`}>
                 {/* Global Header */}
                 <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                         <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
                             <img
                                 src="/logo.png"

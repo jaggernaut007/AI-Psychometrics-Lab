@@ -3,13 +3,10 @@ import { fetchOpenRouterResponse } from '../lib/psychometrics/client';
 import { BIG_FIVE_ITEMS, calculateBigFiveScores } from '../lib/psychometrics/inventories/bigfive';
 import { MBTI_ITEMS, calculateMBTIScores, deriveMBTIFromBigFive } from '../lib/psychometrics/inventories/mbti';
 import { DISC_ITEMS, calculateDISCScores } from '../lib/psychometrics/inventories/disc';
-import { InventoryItem, ModelProfile } from '../lib/psychometrics/types';
+import { DARK_TRIAD_ITEMS, calculateDarkTriadScores } from '../lib/psychometrics/inventories/darktriad';
+import { InventoryItem, ModelProfile, LogEntry } from '../lib/psychometrics/types';
 
-export interface LogEntry {
-    timestamp: string;
-    message: string;
-    type: 'info' | 'error' | 'success';
-}
+
 
 export function usePsychometrics() {
     const [isRunning, setIsRunning] = useState(false);
@@ -19,6 +16,7 @@ export function usePsychometrics() {
     const [results, setResults] = useState<ModelProfile | null>(null);
 
     const logsBufferRef = useRef<LogEntry[]>([]);
+    const allLogsRef = useRef<LogEntry[]>([]); // To store ALL logs for the final result
     const flushTimeoutRef = useRef<number | null>(null);
 
     const flushLogs = useCallback(() => {
@@ -42,7 +40,9 @@ export function usePsychometrics() {
     }, []);
 
     const addLog = useCallback((message: string, type: 'info' | 'error' | 'success' = 'info') => {
-        logsBufferRef.current.push({ timestamp: new Date().toLocaleTimeString(), message, type });
+        const entry: LogEntry = { timestamp: new Date().toLocaleTimeString(), message, type };
+        logsBufferRef.current.push(entry);
+        allLogsRef.current.push(entry); // Store in permanent buffer
 
         if (logsBufferRef.current.length >= 25) {
             flushLogs();
@@ -66,6 +66,7 @@ export function usePsychometrics() {
         setIsRunning(true);
         setLogs([]);
         logsBufferRef.current = [];
+        allLogsRef.current = []; // Clear permanent buffer
         setProgress(0);
         setResults(null);
 
@@ -83,6 +84,9 @@ export function usePsychometrics() {
             if (inventories.includes('mbti')) {
                 allItems = [...allItems, ...MBTI_ITEMS];
             }
+            if (inventories.includes('darktriad')) {
+                allItems = [...allItems, ...DARK_TRIAD_ITEMS];
+            }
 
             setTotalItems(allItems.length);
             addLog(`Total items to query: ${allItems.length} (x5 samples = ${allItems.length * 5} requests)`, 'info');
@@ -91,8 +95,8 @@ export function usePsychometrics() {
 
             // Process items
             // We can parallelize this, but need to be careful with rate limits.
-            // Let's do chunks of 5 items at a time.
-            const CHUNK_SIZE = 5;
+            // Let's do chunks of 3 items at a time to avoid rate limits and timeouts.
+            const CHUNK_SIZE = 3;
 
             for (let i = 0; i < allItems.length; i += CHUNK_SIZE) {
                 const chunk = allItems.slice(i, i + CHUNK_SIZE);
@@ -176,9 +180,8 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Mini
                                         // This avoids matching "1-5" in the scale description or initial "I considered 1..." thoughts.
                                         if (response.length > 50) {
                                             score = parseInt(allMatches[allMatches.length - 1][1]);
-                                            // Truncate log for readability
-                                            const snippet = response.length > 100 ? "..." + response.slice(-100) : response;
-                                            addLog(`[${item.id}] (Verbose) Question: "${item.text}" | Answer: "${snippet}" -> Score: ${score}`, 'success');
+                                            // Do not truncate log
+                                            addLog(`[${item.id}] (Verbose) Question: "${item.text}" | Answer: "${response}" -> Score: ${score}`, 'success');
                                         } else {
                                             // Short response, use first match
                                             score = parseInt(allMatches[0][1]);
@@ -220,7 +223,8 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Mini
                 persona,
                 systemPrompt,
                 timestamp: Date.now(),
-                results: {}
+                results: {},
+                logs: allLogsRef.current // Pass FULL logs from permanent buffer
             };
 
             if (inventories.includes('bigfive')) {
@@ -233,6 +237,9 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Mini
             }
             if (inventories.includes('mbti')) {
                 profile.results['mbti'] = calculateMBTIScores(rawScores);
+            }
+            if (inventories.includes('darktriad')) {
+                profile.results['darktriad'] = calculateDarkTriadScores(rawScores);
             }
 
             setResults(profile);

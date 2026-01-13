@@ -42,6 +42,10 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
     const mbtiTotals: Record<string, number> = { I: 0, E: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
     let mbtiScoreCount = 0;
 
+    // 4. Dark Triad Aggregation
+    const darkTriadTotals: Record<string, number> = { Machiavellianism: 0, Narcissism: 0, Psychopathy: 0 };
+    let darkTriadCount = 0;
+
     runs.forEach(run => {
         // Big Five
         const bf = run.results?.bigfive?.traitScores;
@@ -64,7 +68,6 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
         }
 
         // MBTI Scores Aggregation
-        // Check both 'mbti' and 'mbti_derived' for scores
         const mbtiScores = run.results?.mbti?.traitScores || run.results?.mbti_derived?.traitScores;
         if (mbtiScores) {
             Object.keys(mbtiTotals).forEach(k => {
@@ -73,6 +76,13 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
                 }
             });
             mbtiScoreCount++;
+        }
+
+        // Dark Triad
+        const dt = run.results?.darktriad?.traitScores;
+        if (dt) {
+            Object.keys(darkTriadTotals).forEach(k => darkTriadTotals[k] += (dt[k] || 0));
+            darkTriadCount++;
         }
     });
 
@@ -90,6 +100,11 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
     const avgMbti: Record<string, number> = {};
     if (mbtiScoreCount > 0) {
         Object.keys(mbtiTotals).forEach(k => avgMbti[k] = mbtiTotals[k] / mbtiScoreCount);
+    }
+
+    const avgDarkTriad: Record<string, number> = {};
+    if (darkTriadCount > 0) {
+        Object.keys(darkTriadTotals).forEach(k => avgDarkTriad[k] = darkTriadTotals[k] / darkTriadCount);
     }
 
     // Find MBTI Mode
@@ -119,10 +134,9 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
     });
 
     // Construct Synthetic Profile
-    // We strictly adhere to ModelProfile structure so ResultsView works
     const syntheticProfile: ModelProfile = {
         modelName: `${modelName} (Average)`,
-        persona: topPersona, // Add the dominant persona
+        persona: topPersona,
         timestamp: Date.now(),
         results: {}
     };
@@ -130,7 +144,7 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
     if (bigFiveCount > 0) {
         syntheticProfile.results['bigfive'] = {
             inventoryName: 'Big Five (Aggregated)',
-            rawScores: {}, // Not needed for visual
+            rawScores: {},
             traitScores: avgBigFive,
             details: { count: bigFiveCount }
         };
@@ -146,13 +160,21 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
     }
 
     if (topMbti) {
-        // We need to provide 'type' for SummaryCard
         syntheticProfile.results['mbti_derived'] = {
             inventoryName: 'MBTI (Most Frequent)',
             rawScores: {},
-            traitScores: avgMbti, // Use aggregated averages
+            traitScores: avgMbti,
             type: topMbti,
             details: { count: maxMbtiCount, total: runs.length }
+        };
+    }
+
+    if (darkTriadCount > 0) {
+        syntheticProfile.results['darktriad'] = {
+            inventoryName: 'Dark Triad (Aggregated)',
+            rawScores: {},
+            traitScores: avgDarkTriad,
+            details: { count: darkTriadCount }
         };
     }
 
@@ -175,7 +197,11 @@ export default async function ModelDetailPage(props: { params: Promise<{ model: 
                 </div>
 
                 {/* Reuse the ResultsView in Read-Only Mode */}
-                <ResultsView results={syntheticProfile} readOnly={true} />
+                <ResultsView
+                    results={syntheticProfile}
+                    readOnly={true}
+                    sourceLabel={`explorer/${encodeURIComponent(modelName)}`}
+                />
             </div>
         </div>
     );
