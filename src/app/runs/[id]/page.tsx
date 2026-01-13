@@ -19,6 +19,8 @@ export default async function RunDetailPage({ params }: PageProps) {
 
     const { id } = await params;
 
+
+
     const { data: run, error } = await supabase
         .from('runs')
         .select('*')
@@ -42,6 +44,7 @@ export default async function RunDetailPage({ params }: PageProps) {
         modelName: run.model_name,
         timestamp: new Date(run.created_at).getTime(),
         results: run.results, // Assuming exact shape match
+        logs: run.execution_logs, // Pass logs to ResultsView
     };
 
     return (
@@ -61,7 +64,12 @@ export default async function RunDetailPage({ params }: PageProps) {
                     {run.model_version && <p className="text-gray-600">Version: {run.model_version}</p>}
                 </div>
 
-                <ResultsView results={profile} apiKey="" readOnly={true} />
+                <ResultsView
+                    results={profile}
+                    apiKey=""
+                    readOnly={true}
+                    sourceLabel={`runs/${id}`}
+                />
             </div>
         </div>
     );

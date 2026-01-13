@@ -30,6 +30,7 @@ export default async function LeaderboardPage() {
         count: number;
         bigFive: Record<string, number>;
         disc: Record<string, number>;
+        darkTriad: Record<string, number>;
         mbtiDirectCounts: Record<string, number>;
         mbtiDerivedCounts: Record<string, number>;
     }> = {};
@@ -49,6 +50,7 @@ export default async function LeaderboardPage() {
                 count: 0,
                 bigFive: { N: 0, E: 0, O: 0, A: 0, C: 0 },
                 disc: { D: 0, I: 0, S: 0, C: 0 },
+                darkTriad: { Machiavellianism: 0, Narcissism: 0, Psychopathy: 0 },
                 mbtiDirectCounts: {},
                 mbtiDerivedCounts: {}
             };
@@ -70,6 +72,14 @@ export default async function LeaderboardPage() {
         if (discScores) {
             ['D', 'I', 'S', 'C'].forEach(key => {
                 stats.disc[key] += (discScores[key] || 0);
+            });
+        }
+
+        // Dark Triad
+        const dtScores = run.results?.darktriad?.traitScores;
+        if (dtScores) {
+            ['Machiavellianism', 'Narcissism', 'Psychopathy'].forEach(key => {
+                stats.darkTriad[key] += (dtScores[key] || 0);
             });
         }
 
@@ -96,6 +106,11 @@ export default async function LeaderboardPage() {
             avgDisc[key] = stats.disc[key] / stats.count;
         });
 
+        const avgDarkTriad: Record<string, number> = {};
+        ['Machiavellianism', 'Narcissism', 'Psychopathy'].forEach(key => {
+            avgDarkTriad[key] = stats.darkTriad[key] / stats.count;
+        });
+
         // Find most frequent MBTI
         // Rule: If ANY direct counts exist, use ONLY direct counts.
         // Otherwise, use derived counts.
@@ -119,13 +134,14 @@ export default async function LeaderboardPage() {
             count: stats.count,
             scores: avgScores,
             disc: avgDisc,
+            darkTriad: avgDarkTriad, // Pass Dark Triad
             mbti: topMbti
         };
     }).sort((a, b) => b.count - a.count);
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-screen-2xl mx-auto">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
                     <div>
                         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Model Explorer</h1>

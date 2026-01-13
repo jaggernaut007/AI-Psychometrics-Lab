@@ -36,8 +36,8 @@ export async function fetchOpenRouterResponse(
             return null;
         };
 
-        const MAX_RETRIES = 2;
-        const TIMEOUT_MS = 45_000;
+        const MAX_RETRIES = 3;
+        const TIMEOUT_MS = 90_000;
 
         let lastError: unknown = null;
         for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
