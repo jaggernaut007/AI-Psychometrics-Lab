@@ -116,6 +116,12 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
         );
     };
 
+    // Fix hydration mismatch for date
+    const [dateString, setDateString] = React.useState('');
+    React.useEffect(() => {
+        setDateString(new Date().toLocaleDateString());
+    }, []);
+
     return (
         <div
             ref={ref}
@@ -233,7 +239,7 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
                                 <div className="space-y-6 mt-auto pb-4">
                                     {Object.entries(mbti.psi || {}).length > 0 ? (
                                         Object.entries(mbti.psi || {}).map(([dim, psi]) => {
-                                            return renderMbtiRow(dim[0], dim[1], mbti.traitScores[dim[0]], mbti.traitScores[dim[1]], psi as number);
+                                            return renderMbtiRow(dim[0], dim[1], mbti.traitScores?.[dim[0]] || 0, mbti.traitScores?.[dim[1]] || 0, (psi as number) || 0);
                                         })
                                     ) : (
                                         [['I', 'E'], ['S', 'N'], ['T', 'F'], ['J', 'P']].map(([left, right]) => {
@@ -265,7 +271,7 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
                                                 {dim}
                                             </span>
                                             <span className="text-4xl font-black text-white">
-                                                {Math.round(disc[dim])}
+                                                {Math.round(disc[dim] || 0)}
                                             </span>
                                         </div>
                                     ))}
@@ -277,7 +283,7 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
                                         <div key={dim} className="space-y-2">
                                             <div className="flex justify-between text-xs font-bold text-[#9ca3af]">
                                                 <span>{dim === 'D' ? 'Dominance' : dim === 'I' ? 'Influence' : dim === 'S' ? 'Steadiness' : 'Compliance'}</span>
-                                                <span>{Math.round(disc[dim])}/28</span>
+                                                <span>{Math.round(disc[dim] || 0)}/28</span>
                                             </div>
 
                                             {/* Stylized Progress Bar */}
@@ -285,7 +291,7 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
                                                 <div
                                                     className="h-4 rounded-sm"
                                                     style={{
-                                                        width: `${Math.min((disc[dim] / 28) * 100, 100)}%`,
+                                                        width: `${Math.min(((disc[dim] || 0) / 28) * 100, 100)}%`,
                                                         backgroundColor: dim === 'D' ? '#ef4444' : dim === 'I' ? '#eab308' : dim === 'S' ? '#22c55e' : '#3b82f6'
                                                     }}
                                                 />
@@ -302,7 +308,7 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
                 {/* Footer - Styled like Header */}
                 <div className="flex items-center justify-between border-t border-gray-800 py-2 mt-auto">
                     <div className="text-[10px] tracking-widest uppercase font-medium text-gray-600">
-                        {new Date().toLocaleDateString()}{sourceLabel && <span className="normal-case tracking-normal opacity-75"> • {sourceLabel}</span>}
+                        {dateString}{sourceLabel && <span className="normal-case tracking-normal opacity-75"> • {sourceLabel}</span>}
                     </div>
                     <div className="text-[10px] tracking-wider uppercase font-bold text-[#60a5fa]">
                         Made by: AI Psychometrics Lab

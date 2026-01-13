@@ -4,13 +4,9 @@ import { BIG_FIVE_ITEMS, calculateBigFiveScores } from '../lib/psychometrics/inv
 import { MBTI_ITEMS, calculateMBTIScores, deriveMBTIFromBigFive } from '../lib/psychometrics/inventories/mbti';
 import { DISC_ITEMS, calculateDISCScores } from '../lib/psychometrics/inventories/disc';
 import { DARK_TRIAD_ITEMS, calculateDarkTriadScores } from '../lib/psychometrics/inventories/darktriad';
-import { InventoryItem, ModelProfile } from '../lib/psychometrics/types';
+import { InventoryItem, ModelProfile, LogEntry } from '../lib/psychometrics/types';
 
-export interface LogEntry {
-    timestamp: string;
-    message: string;
-    type: 'info' | 'error' | 'success';
-}
+
 
 export function usePsychometrics() {
     const [isRunning, setIsRunning] = useState(false);

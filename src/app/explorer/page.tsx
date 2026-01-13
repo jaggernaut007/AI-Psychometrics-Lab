@@ -31,6 +31,7 @@ export default async function LeaderboardPage() {
         bigFive: Record<string, number>;
         disc: Record<string, number>;
         darkTriad: Record<string, number>;
+        darkTriadCount?: number;
         mbtiDirectCounts: Record<string, number>;
         mbtiDerivedCounts: Record<string, number>;
     }> = {};
@@ -51,6 +52,7 @@ export default async function LeaderboardPage() {
                 bigFive: { N: 0, E: 0, O: 0, A: 0, C: 0 },
                 disc: { D: 0, I: 0, S: 0, C: 0 },
                 darkTriad: { Machiavellianism: 0, Narcissism: 0, Psychopathy: 0 },
+                darkTriadCount: 0, // Track separate count for Dark Triad
                 mbtiDirectCounts: {},
                 mbtiDerivedCounts: {}
             };
@@ -78,6 +80,7 @@ export default async function LeaderboardPage() {
         // Dark Triad
         const dtScores = run.results?.darktriad?.traitScores;
         if (dtScores) {
+            stats.darkTriadCount = (stats.darkTriadCount || 0) + 1;
             ['Machiavellianism', 'Narcissism', 'Psychopathy'].forEach(key => {
                 stats.darkTriad[key] += (dtScores[key] || 0);
             });
@@ -107,9 +110,11 @@ export default async function LeaderboardPage() {
         });
 
         const avgDarkTriad: Record<string, number> = {};
-        ['Machiavellianism', 'Narcissism', 'Psychopathy'].forEach(key => {
-            avgDarkTriad[key] = stats.darkTriad[key] / stats.count;
-        });
+        if (stats.darkTriadCount && stats.darkTriadCount > 0) {
+            ['Machiavellianism', 'Narcissism', 'Psychopathy'].forEach(key => {
+                avgDarkTriad[key] = stats.darkTriad[key] / stats.darkTriadCount!;
+            });
+        }
 
         // Find most frequent MBTI
         // Rule: If ANY direct counts exist, use ONLY direct counts.

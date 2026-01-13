@@ -16,7 +16,7 @@ export async function saveRun(profile: ModelProfile) {
                 persona: profile.persona || 'Base Model', // Default to Base Model
                 config: { systemPrompt: profile.systemPrompt }, // Save config
                 results: profile.results,
-                execution_logs: profile.logs || [], // Save logs if available
+                logs: profile.logs || [], // Save logs if available
                 created_at: new Date(profile.timestamp).toISOString(),
             });
 

@@ -141,41 +141,7 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
         );
     };
 
-    const getTraitTooltip = (key: string) => {
-        let def: any = null;
-        let rangeText = "";
 
-        if (key.startsWith('disc-')) {
-            const discKey = key.split('-')[1];
-            def = DISC_DEFINITIONS[discKey];
-            rangeText = "Range: 0-100 (Est)";
-        } else if (key.startsWith('dt-')) {
-            const dtKey = key.split('-')[1];
-            def = DARK_TRIAD_DEFINITIONS[dtKey];
-            rangeText = "Range: 0-100";
-        } else {
-            def = BIG_FIVE_DEFINITIONS[key];
-            rangeText = "Range: 0-120";
-        }
-
-        if (!def) return null;
-
-        return (
-            <div className="absolute z-50 hidden group-hover:block w-72 p-4 bg-gray-900 text-white text-xs rounded shadow-2xl -translate-x-1/2 left-1/2 mt-2 pointer-events-none text-left font-normal whitespace-normal border border-gray-700">
-                <div className="flex justify-between items-baseline mb-1">
-                    <div className="font-bold text-sm text-white">{def.title}</div>
-                    <div className="text-[10px] text-gray-400 font-mono">{rangeText}</div>
-                </div>
-                <div className="mb-3 text-gray-300 leading-relaxed border-b border-gray-700 pb-2">{def.description}</div>
-
-                <div className="grid grid-cols-[35px_1fr] gap-x-3 gap-y-2">
-                    <span className="text-green-400 font-bold text-right">High:</span> <span className="text-gray-200">{def.high}</span>
-                    {def.medium && <><span className="text-yellow-400 font-bold text-right">Med:</span> <span className="text-gray-200">{def.medium}</span></>}
-                    <span className="text-red-400 font-bold text-right">Low:</span> <span className="text-gray-200">{def.low}</span>
-                </div>
-            </div>
-        );
-    };
 
     const getMbtiTooltip = (type: string) => {
         const desc = MBTI_DEFINITIONS[type] || "No description available.";

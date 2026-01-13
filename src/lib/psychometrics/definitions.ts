@@ -74,7 +74,7 @@ export const DARK_TRIAD_DEFINITIONS: Record<string, { title: string; description
     Narcissism: {
         title: "Narcissism",
         description: "Characterized by grandiosity, pride, egotism, and a lack of empathy.",
-        high: "Grandios, entitled, and seeks admiration. Believes they are superior to others.",
+        high: "Grandiose, entitled, and seeks admiration. Believes they are superior to others.",
         low: "Modest, humble, and realistic. Does not seek excessive attention."
     },
     Psychopathy: {
