@@ -41,7 +41,7 @@ export default function AboutPage() {
                             Run a Test
                         </Link>
                         <Link href="/explorer" className="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-50 transition">
-                            View Leaderboard
+                            Explore Models
                         </Link>
                     </div>
                 </div>
