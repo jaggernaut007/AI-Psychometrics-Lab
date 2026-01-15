@@ -167,23 +167,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                         {/* SVG Chart */}
                         {/* SVG Chart */}
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 300, position: 'relative' }}>
-                            {/* SVG DISABLED: Causing 500 Error on Vercel */}
-                            <div style={{
-                                width: 200, height: 200, borderRadius: 100,
-                                border: '2px dashed #334155',
-                                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                                color: '#64748b', fontSize: 14
-                            }}>
-                                CHART UNAVAILABLE
-                            </div>
-
-                            {/* 
                             <svg width="300" height="300" viewBox="0 0 300 300">
+                                {/* Background Hexagons */}
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius)} fill="none" stroke="#334155" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.75)} fill="none" stroke="#1e293b" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.5)} fill="none" stroke="#1e293b" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.25)} fill="none" stroke="#1e293b" strokeWidth="1" />
 
+                                {/* Axes */}
                                 {[0, 1, 2, 3, 4].map(i => {
                                     const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
                                     const x = radarCenter.x + Math.cos(angle) * radarRadius;
@@ -191,8 +182,10 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                     return <line key={i} x1={radarCenter.x} y1={radarCenter.y} x2={x} y2={y} stroke="#334155" strokeWidth="1" />;
                                 })}
 
+                                {/* Data Polygon */}
                                 <polygon points={generateRadarPath(radarScores, radarCenter, radarRadius)} fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
 
+                                {/* Points */}
                                 {radarScores.map((score, i) => {
                                     const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
                                     const r = (score / 120) * radarRadius;
@@ -202,7 +195,6 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                 })}
 
                             </svg>
-                            */}
 
                             {/* LABELS (Overlay Divs for Satori Support) */}
                             {/* Neuroticism (Top) */}
