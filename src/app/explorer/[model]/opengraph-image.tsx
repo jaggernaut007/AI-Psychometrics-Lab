@@ -125,34 +125,34 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                 <div style={{ display: 'flex', width: '100%', gap: 20, marginBottom: 20 }}>
                     {/* Mach */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>MACHIAVELLIANISM</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>MACHIAVELLIANISM</div>
                         <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
                             <span style={{ fontSize: 36, fontWeight: 900, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Machiavellianism)}</span>
                             <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
                         </div>
-                        <div style={{ width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
+                        <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
                             <div style={{ width: `${Math.min(darkTriad.Machiavellianism, 100)}%`, height: '100%', backgroundColor: '#3b82f6', borderRadius: 3 }} />
                         </div>
                     </div>
                     {/* Narc */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>NARCISSISM</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>NARCISSISM</div>
                         <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
                             <span style={{ fontSize: 36, fontWeight: 900, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Narcissism)}</span>
                             <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
                         </div>
-                        <div style={{ width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
+                        <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
                             <div style={{ width: `${Math.min(darkTriad.Narcissism, 100)}%`, height: '100%', backgroundColor: '#a855f7', borderRadius: 3 }} />
                         </div>
                     </div>
                     {/* Psych */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>PSYCHOPATHY</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>PSYCHOPATHY</div>
                         <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
                             <span style={{ fontSize: 36, fontWeight: 900, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Psychopathy)}</span>
                             <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
                         </div>
-                        <div style={{ width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
+                        <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
                             <div style={{ width: `${Math.min(darkTriad.Psychopathy, 100)}%`, height: '100%', backgroundColor: '#ef4444', borderRadius: 3 }} />
                         </div>
                     </div>
@@ -163,7 +163,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                     {/* COL 1: BIG FIVE (RADAR) */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', alignItems: 'center' }}>
-                        <div style={{ width: '100%', fontSize: 14, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.05em', marginBottom: 20 }}>BIG FIVE PROFILE</div>
+                        <div style={{ display: 'flex', width: '100%', fontSize: 14, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.05em', marginBottom: 20 }}>BIG FIVE PROFILE</div>
 
                         {/* SVG Chart */}
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 300, position: 'relative' }}>
@@ -211,8 +211,8 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
                         <div style={{ width: '100%', fontSize: 12, fontWeight: 700, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>JUNGIAN TYPE</div>
 
-                        <div style={{ fontSize: 80, fontWeight: 900, color: '#3b82f6', lineHeight: 1, marginBottom: 5 }}>{mbtiType}</div>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 40 }}>Estimated Type</div>
+                        <div style={{ display: 'flex', fontSize: 80, fontWeight: 900, color: '#3b82f6', lineHeight: 1, marginBottom: 5 }}>{mbtiType}</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 40 }}>Estimated Type</div>
 
                         {/* Slider Bars */}
                         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 15 }}>
@@ -267,7 +267,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                             <span>{label}</span>
                                             <span>{Math.round(disc[key] || 0)}/28</span>
                                         </div>
-                                        <div style={{ width: '100%', height: 10, backgroundColor: '#1e293b', borderRadius: 5 }}>
+                                        <div style={{ display: 'flex', width: '100%', height: 10, backgroundColor: '#1e293b', borderRadius: 5 }}>
                                             <div style={{ width: `${(disc[key] / 28) * 100}%`, height: '100%', backgroundColor: color, borderRadius: 5 }} />
                                         </div>
                                     </div>
