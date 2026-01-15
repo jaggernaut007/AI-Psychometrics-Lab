@@ -110,14 +110,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 15, width: '100%', borderBottom: '1px solid #1F2937', paddingBottom: 15 }}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                            <span style={{ fontSize: 48, fontWeight: 900, marginRight: 15 }}>{modelName}</span>
+                            <span style={{ fontSize: 48, fontWeight: 600, marginRight: 15 }}>{modelName}</span>
                             <span style={{ fontSize: 32, fontWeight: 600, color: '#6b7280' }}>(Average)</span>
                             <span style={{ fontSize: 32, fontWeight: 600, color: '#374151', marginLeft: 15 }}>(Base Model)</span>
                         </div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                        <div style={{ fontSize: 14, fontWeight: 700, color: '#3b82f6', letterSpacing: '0.1em' }}>PSYCHOMETRIC</div>
-                        <div style={{ fontSize: 14, fontWeight: 700, color: '#3b82f6', letterSpacing: '0.1em' }}>FINGERPRINT</div>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: '#3b82f6', letterSpacing: '0.1em' }}>PSYCHOMETRIC</div>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: '#3b82f6', letterSpacing: '0.1em' }}>FINGERPRINT</div>
                     </div>
                 </div>
 
@@ -125,9 +125,9 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                 <div style={{ display: 'flex', width: '100%', gap: 20, marginBottom: 20 }}>
                     {/* Mach */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>MACHIAVELLIANISM</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#94a3b8', marginBottom: 5 }}>MACHIAVELLIANISM</div>
                         <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
-                            <span style={{ fontSize: 36, fontWeight: 900, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Machiavellianism)}</span>
+                            <span style={{ fontSize: 36, fontWeight: 600, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Machiavellianism)}</span>
                             <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
                         </div>
                         <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
@@ -136,9 +136,9 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     </div>
                     {/* Narc */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>NARCISSISM</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#94a3b8', marginBottom: 5 }}>NARCISSISM</div>
                         <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
-                            <span style={{ fontSize: 36, fontWeight: 900, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Narcissism)}</span>
+                            <span style={{ fontSize: 36, fontWeight: 600, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Narcissism)}</span>
                             <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
                         </div>
                         <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
@@ -147,9 +147,9 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     </div>
                     {/* Psych */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#94a3b8', marginBottom: 5 }}>PSYCHOPATHY</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#94a3b8', marginBottom: 5 }}>PSYCHOPATHY</div>
                         <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
-                            <span style={{ fontSize: 36, fontWeight: 900, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Psychopathy)}</span>
+                            <span style={{ fontSize: 36, fontWeight: 600, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Psychopathy)}</span>
                             <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
                         </div>
                         <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
@@ -163,7 +163,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                     {/* COL 1: BIG FIVE (RADAR) */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', width: '100%', fontSize: 14, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.05em', marginBottom: 20 }}>BIG FIVE PROFILE</div>
+                        <div style={{ display: 'flex', width: '100%', fontSize: 14, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em', marginBottom: 20 }}>BIG FIVE PROFILE</div>
 
                         {/* SVG Chart */}
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 300, position: 'relative' }}>
@@ -195,11 +195,11 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                 })}
 
                                 {/* Labels (Absolute text placement is easier in div but we can try SVG text) */}
-                                {/* N */} <text x="150" y="40" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="700">Neuroticism</text>
-                                {/* E */} <text x="260" y="110" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="700">Extraversion</text>
-                                {/* O */} <text x="230" y="270" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="700">Openness</text>
-                                {/* A */} <text x="70" y="270" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="700">Agreeableness</text>
-                                {/* C */} <text x="40" y="110" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="700">Conscientiousness</text>
+                                {/* N */} <text x="150" y="40" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Neuroticism</text>
+                                {/* E */} <text x="260" y="110" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Extraversion</text>
+                                {/* O */} <text x="230" y="270" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Openness</text>
+                                {/* A */} <text x="70" y="270" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Agreeableness</text>
+                                {/* C */} <text x="40" y="110" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Conscientiousness</text>
                             </svg>
                         </div>
 
@@ -209,10 +209,10 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     {/* COL 2: MBTI */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
                         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
-                        <div style={{ width: '100%', fontSize: 12, fontWeight: 700, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>JUNGIAN TYPE</div>
+                        <div style={{ width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>JUNGIAN TYPE</div>
 
-                        <div style={{ display: 'flex', fontSize: 80, fontWeight: 900, color: '#3b82f6', lineHeight: 1, marginBottom: 5 }}>{mbtiType}</div>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 40 }}>Estimated Type</div>
+                        <div style={{ display: 'flex', fontSize: 80, fontWeight: 600, color: '#3b82f6', lineHeight: 1, marginBottom: 5 }}>{mbtiType}</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 40 }}>Estimated Type</div>
 
                         {/* Slider Bars */}
                         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 15 }}>
@@ -226,14 +226,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                                 return (
                                     <div key={L + R} style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                                        <span style={{ width: 15, fontWeight: 700, color: ratio >= 0.5 ? '#fff' : '#64748b', fontSize: 12 }}>{L}</span>
+                                        <span style={{ width: 15, fontWeight: 600, color: ratio >= 0.5 ? '#fff' : '#64748b', fontSize: 12 }}>{L}</span>
                                         <div style={{ flex: 1, height: 6, backgroundColor: '#1f2937', borderRadius: 3, margin: '0 10px', position: 'relative', display: 'flex' }}>
                                             {/* Start Bar */}
                                             <div style={{ width: `${ratio * 100}%`, height: '100%', backgroundColor: ratio >= 0.5 ? color : '#1f2937', borderRadius: '3px 0 0 3px' }} />
                                             {/* End Bar */}
                                             <div style={{ width: `${(1 - ratio) * 100}%`, height: '100%', backgroundColor: ratio < 0.5 ? color : '#1f2937', borderRadius: '0 3px 3px 0' }} />
                                         </div>
-                                        <span style={{ width: 15, fontWeight: 700, color: ratio < 0.5 ? '#fff' : '#64748b', fontSize: 12, textAlign: 'right' }}>{R}</span>
+                                        <span style={{ width: 15, fontWeight: 600, color: ratio < 0.5 ? '#fff' : '#64748b', fontSize: 12, textAlign: 'right' }}>{R}</span>
                                     </div>
                                 )
                             })}
@@ -243,14 +243,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     {/* COL 3: DISC */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', position: 'relative' }}>
                         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
-                        <div style={{ width: '100%', fontSize: 12, fontWeight: 700, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>DISC ASSESSMENT</div>
+                        <div style={{ width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>DISC ASSESSMENT</div>
 
                         {/* Values */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 40 }}>
                             {['D', 'I', 'S', 'C'].map(k => (
                                 <div key={k} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                    <span style={{ fontSize: 24, fontWeight: 900, color: k === 'D' ? '#ef4444' : k === 'I' ? '#eab308' : k === 'S' ? '#22c55e' : '#3b82f6', marginBottom: 5 }}>{k}</span>
-                                    <span style={{ fontSize: 28, fontWeight: 700, color: '#fff' }}>{Math.round(disc[k as keyof typeof disc] || 0)}</span>
+                                    <span style={{ fontSize: 24, fontWeight: 600, color: k === 'D' ? '#ef4444' : k === 'I' ? '#eab308' : k === 'S' ? '#22c55e' : '#3b82f6', marginBottom: 5 }}>{k}</span>
+                                    <span style={{ fontSize: 28, fontWeight: 600, color: '#fff' }}>{Math.round(disc[k as keyof typeof disc] || 0)}</span>
                                 </div>
                             ))}
                         </div>
