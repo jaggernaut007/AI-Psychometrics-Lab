@@ -72,11 +72,16 @@ export default async function Image({ params }: { params: Promise<{ model: strin
     const radarCenter = { x: 150, y: 150 };
     const radarRadius = 90;
 
+    // Font Loading
+    const interSemiBold = await fetch(
+        new URL('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZs.woff', import.meta.url)
+    ).then((res) => res.arrayBuffer());
+
     return new ImageResponse(
         (
             <div style={{
                 height: '100%', width: '100%', display: 'flex', flexDirection: 'column',
-                backgroundColor: '#050B14', color: 'white', fontFamily: 'sans-serif',
+                backgroundColor: '#050B14', color: 'white', fontFamily: '"Inter", sans-serif',
                 padding: '30px'
             }}>
                 {/* HEADLINE */}
@@ -263,6 +268,16 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
             </div>
         ),
-        { ...size }
+        {
+            ...size,
+            fonts: [
+                {
+                    name: 'Inter',
+                    data: interSemiBold,
+                    style: 'normal',
+                    weight: 700,
+                },
+            ],
+        }
     );
 }
