@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://aipsychometricslab.com'),
     title: "AI Psychometrics Lab",
     description: "Stateless Independent Context Window Approach",
 };
