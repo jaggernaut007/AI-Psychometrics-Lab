@@ -77,8 +77,10 @@ export default async function Image({ params }: { params: Promise<{ model: strin
     const radarRadius = 90;
 
     // Font Loading
+    // Font Loading
     let interSemiBold: ArrayBuffer | null = null;
-    // DISABLED FOR DEBUGGING STEP 2: Verify Data Fetching Works First
+    // DISABLED FOR DEBUGGING: Suspected cause of 500 Error
+    /*
     try {
         console.log('[OG] Fetching Font...');
         const response = await fetch('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZs.woff');
@@ -93,6 +95,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
         console.error('[OG] Error fetching font:', e);
         throw e; // Fail hard so we see the error in logs instead of blank image
     }
+    */
 
 
     return new ImageResponse(
@@ -100,7 +103,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
             <div style={{
                 height: '100%', width: '100%', display: 'flex', flexDirection: 'column',
                 backgroundColor: '#050B14', color: 'white',
-                fontFamily: '"Inter", sans-serif',
+                // fontFamily: '"Inter", sans-serif',
                 padding: '30px'
             }}>
                 {/* HEADLINE */}
@@ -164,14 +167,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                         {/* SVG Chart */}
                         {/* SVG Chart */}
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 300, position: 'relative' }}>
-                            {/* SVG DISABLED - FB BLANK IMAGE TEST */}
-                            <div style={{ color: 'white', fontSize: 24 }}>Fonts Active - SVG Disabled</div>
-                            {/* <svg width="300" height="300" viewBox="0 0 300 300">
+                            <svg width="300" height="300" viewBox="0 0 300 300">
+                                {/* Background Hexagons */}
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius)} fill="none" stroke="#334155" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.75)} fill="none" stroke="#1e293b" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.5)} fill="none" stroke="#1e293b" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.25)} fill="none" stroke="#1e293b" strokeWidth="1" />
 
+                                {/* Axes */}
                                 {[0, 1, 2, 3, 4].map(i => {
                                     const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
                                     const x = radarCenter.x + Math.cos(angle) * radarRadius;
@@ -179,8 +182,10 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                     return <line key={i} x1={radarCenter.x} y1={radarCenter.y} x2={x} y2={y} stroke="#334155" strokeWidth="1" />;
                                 })}
 
+                                {/* Data Polygon */}
                                 <polygon points={generateRadarPath(radarScores, radarCenter, radarRadius)} fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
 
+                                {/* Points */}
                                 {radarScores.map((score, i) => {
                                     const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
                                     const r = (score / 120) * radarRadius;
@@ -189,7 +194,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                     return <circle key={i} cx={x} cy={y} r="3" fill="#60a5fa" />;
                                 })}
 
-                            </svg> */}
+                            </svg>
 
                             {/* LABELS (Overlay Divs for Satori Support) */}
                             {/* Neuroticism (Top) */}
@@ -297,6 +302,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
         ),
         {
             ...size,
+            /*
             fonts: [
                 {
                     name: 'Inter',
@@ -305,6 +311,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     weight: 600,
                 },
             ],
+            */
         }
     );
 }
