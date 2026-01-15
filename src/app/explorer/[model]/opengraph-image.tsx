@@ -167,14 +167,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                         {/* SVG Chart */}
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 300, position: 'relative' }}>
-                            <svg width="300" height="300" viewBox="0 0 300 300">
-                                {/* Background Hexagons */}
+                            {/* SVG TEMPORARILY DISABLED FOR DEBUGGING */}
+                            <div style={{ color: 'white' }}>Chart Disabled</div>
+                            {/* <svg width="300" height="300" viewBox="0 0 300 300">
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius)} fill="none" stroke="#334155" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.75)} fill="none" stroke="#1e293b" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.5)} fill="none" stroke="#1e293b" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.25)} fill="none" stroke="#1e293b" strokeWidth="1" />
 
-                                {/* Axes */}
                                 {[0, 1, 2, 3, 4].map(i => {
                                     const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
                                     const x = radarCenter.x + Math.cos(angle) * radarRadius;
@@ -182,10 +182,8 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                     return <line key={i} x1={radarCenter.x} y1={radarCenter.y} x2={x} y2={y} stroke="#334155" strokeWidth="1" />;
                                 })}
 
-                                {/* Data Polygon */}
                                 <polygon points={generateRadarPath(radarScores, radarCenter, radarRadius)} fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
 
-                                {/* Points */}
                                 {radarScores.map((score, i) => {
                                     const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
                                     const r = (score / 120) * radarRadius;
@@ -196,27 +194,21 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                             </svg>
 
-                            {/* LABELS (Overlay Divs for Satori Support) */}
-                            {/* Neuroticism (Top) */}
                             <div style={{ position: 'absolute', top: 30, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Neuroticism</span>
                             </div>
-                            {/* Extraversion (Top Right) */}
                             <div style={{ position: 'absolute', top: 100, left: 230, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Extraversion</span>
                             </div>
-                            {/* Openness (Bottom Right) */}
                             <div style={{ position: 'absolute', top: 260, left: 200, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Openness</span>
                             </div>
-                            {/* Agreeableness (Bottom Left) */}
                             <div style={{ position: 'absolute', top: 260, left: 40, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Agreeableness</span>
                             </div>
-                            {/* Conscientiousness (Top Left) */}
                             <div style={{ position: 'absolute', top: 100, left: 10, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Conscientiousness</span>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* COL 2: MBTI */}
