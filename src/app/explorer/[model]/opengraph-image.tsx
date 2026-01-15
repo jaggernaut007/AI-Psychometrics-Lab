@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { getModelProfile } from '@/lib/psychometrics/data';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export const alt = 'AI Psychometrics Lab Analysis';
 export const size = { width: 1200, height: 630 };
