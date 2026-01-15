@@ -108,7 +108,6 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
     // Font Loading
     let interSemiBold: ArrayBuffer | null = null;
-    /* 
     // DISABLED FOR DEBUGGING STEP 2: Verify Data Fetching Works First
     try {
         console.log('[OG] Fetching Font...');
@@ -124,14 +123,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
         console.error('[OG] Error fetching font:', e);
         throw e; // Fail hard so we see the error in logs instead of blank image
     }
-    */
+
 
     return new ImageResponse(
         (
             <div style={{
                 height: '100%', width: '100%', display: 'flex', flexDirection: 'column',
                 backgroundColor: '#050B14', color: 'white',
-                // fontFamily: '"Inter", sans-serif', // DISABLED FONT
+                fontFamily: '"Inter", sans-serif',
                 padding: '30px'
             }}>
                 {/* HEADLINE */}
@@ -195,8 +194,8 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                         {/* SVG Chart */}
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 300, position: 'relative' }}>
                             {/* SVG TEMPORARILY DISABLED FOR DEBUGGING */}
-                            <div style={{ color: 'white' }}>Chart Disabled</div>
-                            {/* <svg width="300" height="300" viewBox="0 0 300 300">
+                            {/* <div style={{ color: 'white' }}>Chart Disabled</div> */}
+                            <svg width="300" height="300" viewBox="0 0 300 300">
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius)} fill="none" stroke="#334155" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.75)} fill="none" stroke="#1e293b" strokeWidth="1" />
                                 <polygon points={generateBgPolygon(radarCenter, radarRadius * 0.5)} fill="none" stroke="#1e293b" strokeWidth="1" />
@@ -221,21 +220,27 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                             </svg>
 
+                            {/* LABELS (Overlay Divs for Satori Support) */}
+                            {/* Neuroticism (Top) */}
                             <div style={{ position: 'absolute', top: 30, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Neuroticism</span>
                             </div>
+                            {/* Extraversion (Top Right) */}
                             <div style={{ position: 'absolute', top: 100, left: 230, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Extraversion</span>
                             </div>
+                            {/* Openness (Bottom Right) */}
                             <div style={{ position: 'absolute', top: 260, left: 200, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Openness</span>
                             </div>
+                            {/* Agreeableness (Bottom Left) */}
                             <div style={{ position: 'absolute', top: 260, left: 40, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Agreeableness</span>
                             </div>
+                            {/* Conscientiousness (Top Left) */}
                             <div style={{ position: 'absolute', top: 100, left: 10, display: 'flex' }}>
                                 <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Conscientiousness</span>
-                            </div> */}
+                            </div>
                         </div>
 
                     </div>
@@ -321,7 +326,6 @@ export default async function Image({ params }: { params: Promise<{ model: strin
         ),
         {
             ...size,
-            /*
             fonts: [
                 {
                     name: 'Inter',
@@ -330,7 +334,6 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     weight: 600,
                 },
             ],
-            */
         }
     );
 }
