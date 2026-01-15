@@ -194,18 +194,32 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                     return <circle key={i} cx={x} cy={y} r="3" fill="#60a5fa" />;
                                 })}
 
-                                {/* Labels (Absolute text placement is easier in div but we can try SVG text) */}
-                                {/* N */} <text x="150" y="40" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Neuroticism</text>
-                                {/* E */} <text x="260" y="110" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Extraversion</text>
-                                {/* O */} <text x="230" y="270" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Openness</text>
-                                {/* A */} <text x="70" y="270" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Agreeableness</text>
-                                {/* C */} <text x="40" y="110" textAnchor="middle" fill="#94a3b8" fontSize="12" fontWeight="600">Conscientiousness</text>
                             </svg>
-                        </div>
 
+                            {/* LABELS (Overlay Divs for Satori Support) */}
+                            {/* Neuroticism (Top) */}
+                            <div style={{ position: 'absolute', top: 30, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
+                                <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Neuroticism</span>
+                            </div>
+                            {/* Extraversion (Top Right) */}
+                            <div style={{ position: 'absolute', top: 100, left: 230, display: 'flex' }}>
+                                <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Extraversion</span>
+                            </div>
+                            {/* Openness (Bottom Right) */}
+                            <div style={{ position: 'absolute', top: 260, left: 200, display: 'flex' }}>
+                                <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Openness</span>
+                            </div>
+                            {/* Agreeableness (Bottom Left) */}
+                            <div style={{ position: 'absolute', top: 260, left: 40, display: 'flex' }}>
+                                <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Agreeableness</span>
+                            </div>
+                            {/* Conscientiousness (Top Left) */}
+                            <div style={{ position: 'absolute', top: 100, left: 10, display: 'flex' }}>
+                                <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8' }}>Conscientiousness</span>
+                            </div>
+                        </svg>
                     </div>
 
-                    {/* COL 2: MBTI */}
                     {/* COL 2: MBTI */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
                         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
@@ -216,21 +230,19 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                         {/* Slider Bars */}
                         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 15 }}>
-                            {[['I', 'E'], ['S', 'N'], ['T', 'F'], ['J', 'P']].map(([L, R]) => { // Fixed order
+                            {[['I', 'E'], ['S', 'N'], ['T', 'F'], ['J', 'P']].map(([L, R]) => {
                                 const lScore = mbti[L as keyof typeof mbti] || 0;
                                 const rScore = mbti[R as keyof typeof mbti] || 0;
                                 const total = lScore + rScore;
                                 const ratio = total > 0 ? lScore / total : 0.5;
                                 let color = '#3b82f6';
-                                if (L === 'S') color = '#22c55e'; // Green for Sensing/Tuition usually?
+                                if (L === 'S') color = '#22c55e';
 
                                 return (
                                     <div key={L + R} style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                                         <span style={{ width: 15, fontWeight: 600, color: ratio >= 0.5 ? '#fff' : '#64748b', fontSize: 12 }}>{L}</span>
                                         <div style={{ flex: 1, height: 6, backgroundColor: '#1f2937', borderRadius: 3, margin: '0 10px', position: 'relative', display: 'flex' }}>
-                                            {/* Start Bar */}
                                             <div style={{ width: `${ratio * 100}%`, height: '100%', backgroundColor: ratio >= 0.5 ? color : '#1f2937', borderRadius: '3px 0 0 3px' }} />
-                                            {/* End Bar */}
                                             <div style={{ width: `${(1 - ratio) * 100}%`, height: '100%', backgroundColor: ratio < 0.5 ? color : '#1f2937', borderRadius: '0 3px 3px 0' }} />
                                         </div>
                                         <span style={{ width: 15, fontWeight: 600, color: ratio < 0.5 ? '#fff' : '#64748b', fontSize: 12, textAlign: 'right' }}>{R}</span>
@@ -245,7 +257,6 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
                         <div style={{ width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>DISC ASSESSMENT</div>
 
-                        {/* Values */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 40 }}>
                             {['D', 'I', 'S', 'C'].map(k => (
                                 <div key={k} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -255,12 +266,10 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                             ))}
                         </div>
 
-                        {/* Bars moved to bottom */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 'auto' }}>
                             {['Dominance', 'Influence', 'Steadiness', 'Compliance'].map((label, i) => {
                                 const key = label[0];
                                 const color = key === 'D' ? '#ef4444' : key === 'I' ? '#eab308' : key === 'S' ? '#22c55e' : '#3b82f6';
-                                const val = disc[key as keyof typeof disc] || 0;
                                 return (
                                     <div key={label} style={{ display: 'flex', flexDirection: 'column' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#94a3b8', marginBottom: 3 }}>
