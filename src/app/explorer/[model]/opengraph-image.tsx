@@ -44,7 +44,7 @@ function generateBgPolygon(center: { x: number, y: number }, radius: number) {
 export default async function Image({ params }: { params: Promise<{ model: string }> }) {
     // --- DEBUG OVERRIDE ---
     // Uncomment this to force a simple render for testing Vercel connectivity
-    const DEBUG_MODE = true;
+    const DEBUG_MODE = false;
     if (DEBUG_MODE) {
         return new ImageResponse(
             (
@@ -108,6 +108,8 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
     // Font Loading
     let interSemiBold: ArrayBuffer | null = null;
+    /* 
+    // DISABLED FOR DEBUGGING STEP 2: Verify Data Fetching Works First
     try {
         console.log('[OG] Fetching Font...');
         const response = await fetch('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZs.woff');
@@ -122,12 +124,14 @@ export default async function Image({ params }: { params: Promise<{ model: strin
         console.error('[OG] Error fetching font:', e);
         throw e; // Fail hard so we see the error in logs instead of blank image
     }
+    */
 
     return new ImageResponse(
         (
             <div style={{
                 height: '100%', width: '100%', display: 'flex', flexDirection: 'column',
-                backgroundColor: '#050B14', color: 'white', fontFamily: '"Inter", sans-serif',
+                backgroundColor: '#050B14', color: 'white',
+                // fontFamily: '"Inter", sans-serif', // DISABLED FONT
                 padding: '30px'
             }}>
                 {/* HEADLINE */}
@@ -317,6 +321,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
         ),
         {
             ...size,
+            /*
             fonts: [
                 {
                     name: 'Inter',
@@ -325,6 +330,7 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     weight: 600,
                 },
             ],
+            */
         }
     );
 }
