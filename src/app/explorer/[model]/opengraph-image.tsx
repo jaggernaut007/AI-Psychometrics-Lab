@@ -124,56 +124,171 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                 {/* DARK TRIAD ROW */}
                 <div style={{ display: 'flex', width: '100%', gap: 20, marginBottom: 20 }}>
                     {/* Mach */}
-                    <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#94a3b8', marginBottom: 5 }}>MACHIAVELLIANISM</div>
-                        <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
-                            <span style={{ fontSize: 36, fontWeight: 600, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Machiavellianism)}</span>
-                            <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
+                    <div style={{
+                        display: 'flex', flex: 1, backgroundColor: '#0B1221', padding: '15px 20px', borderRadius: 8,
+                        border: '1px solid #1E293B', flexDirection: 'column', position: 'relative',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+                            <div style={{
+                                display: 'flex', width: 32, height: 32, borderRadius: 4, backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                border: '1px solid #3b82f6', justifyContent: 'center', alignItems: 'center', marginRight: 12
+                            }}>
+                                <span style={{ color: '#3b82f6', fontSize: 16, fontWeight: 700 }}>M</span>
+                            </div>
+                            <span style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.05em' }}>MACHIAVELLIANISM</span>
                         </div>
-                        <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
-                            <div style={{ width: `${Math.min(darkTriad.Machiavellianism, 100)}%`, height: '100%', backgroundColor: '#3b82f6', borderRadius: 3 }} />
+                        <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                            <span style={{ fontSize: 32, fontWeight: 700, color: '#fff', marginRight: 4 }}>{Math.round(darkTriad.Machiavellianism)}</span>
+                            <span style={{ fontSize: 14, color: '#64748b' }}>/100</span>
                         </div>
+                        <div style={{ position: 'absolute', bottom: 0, left: 0, height: 3, backgroundColor: '#3b82f6', width: '45%', borderRadius: '0 0 0 8px' }} />
                     </div>
+
                     {/* Narc */}
-                    <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#94a3b8', marginBottom: 5 }}>NARCISSISM</div>
-                        <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
-                            <span style={{ fontSize: 36, fontWeight: 600, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Narcissism)}</span>
-                            <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
+                    <div style={{
+                        display: 'flex', flex: 1, backgroundColor: '#0B1221', padding: '15px 20px', borderRadius: 8,
+                        border: '1px solid #1E293B', flexDirection: 'column', position: 'relative'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+                            <div style={{
+                                display: 'flex', width: 32, height: 32, borderRadius: 4, backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                                border: '1px solid #a855f7', justifyContent: 'center', alignItems: 'center', marginRight: 12
+                            }}>
+                                <span style={{ color: '#a855f7', fontSize: 16, fontWeight: 700 }}>N</span>
+                            </div>
+                            <span style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.05em' }}>NARCISSISM</span>
                         </div>
-                        <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
-                            <div style={{ width: `${Math.min(darkTriad.Narcissism, 100)}%`, height: '100%', backgroundColor: '#a855f7', borderRadius: 3 }} />
+                        <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                            <span style={{ fontSize: 32, fontWeight: 700, color: '#fff', marginRight: 4 }}>{Math.round(darkTriad.Narcissism)}</span>
+                            <span style={{ fontSize: 14, color: '#64748b' }}>/100</span>
                         </div>
+                        <div style={{ position: 'absolute', bottom: 0, left: 0, height: 3, backgroundColor: '#a855f7', width: '55%', borderRadius: '0 0 0 8px' }} />
                     </div>
+
                     {/* Psych */}
-                    <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', padding: 20, borderRadius: 12, border: '1px solid #1e293b', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#94a3b8', marginBottom: 5 }}>PSYCHOPATHY</div>
-                        <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: 10 }}>
-                            <span style={{ fontSize: 36, fontWeight: 600, color: '#fff', lineHeight: 1, marginRight: 5 }}>{Math.round(darkTriad.Psychopathy)}</span>
-                            <span style={{ fontSize: 16, color: '#64748b', marginBottom: 4 }}>/100</span>
+                    <div style={{
+                        display: 'flex', flex: 1, backgroundColor: '#0B1221', padding: '15px 20px', borderRadius: 8,
+                        border: '1px solid #1E293B', flexDirection: 'column', position: 'relative'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+                            <div style={{
+                                display: 'flex', width: 32, height: 32, borderRadius: 4, backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                border: '1px solid #ef4444', justifyContent: 'center', alignItems: 'center', marginRight: 12
+                            }}>
+                                <span style={{ color: '#ef4444', fontSize: 16, fontWeight: 700 }}>P</span>
+                            </div>
+                            <span style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.05em' }}>PSYCHOPATHY</span>
                         </div>
-                        <div style={{ display: 'flex', width: '100%', height: 6, backgroundColor: '#1e293b', borderRadius: 3 }}>
-                            <div style={{ width: `${Math.min(darkTriad.Psychopathy, 100)}%`, height: '100%', backgroundColor: '#ef4444', borderRadius: 3 }} />
+                        <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                            <span style={{ fontSize: 32, fontWeight: 700, color: '#fff', marginRight: 4 }}>{Math.round(darkTriad.Psychopathy)}</span>
+                            <span style={{ fontSize: 14, color: '#64748b' }}>/100</span>
                         </div>
+                        <div style={{ position: 'absolute', bottom: 0, left: 0, height: 3, backgroundColor: '#ef4444', width: '35%', borderRadius: '0 0 0 8px' }} />
                     </div>
                 </div>
 
                 {/* MAIN GRID */}
                 <div style={{ display: 'flex', flex: 1, gap: 20 }}>
                     {/* COL 1: BIG FIVE (RADAR) */}
-                    <div style={{ display: 'flex', flex: 1, backgroundColor: '#0f172a', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', width: '100%', fontSize: 14, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.05em', marginBottom: 20 }}>BIG FIVE PROFILE</div>
+                    <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1E293B', padding: 24, flexDirection: 'column', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', width: '100%', fontSize: 14, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.1em', marginBottom: 20 }}>BIG FIVE PROFILE</div>
 
-                        {/* SVG Chart */}
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 300 }}>
-                            {/* SVG DISABLED: Causing 500 Error on Vercel */}
-                            <div style={{
-                                width: 200, height: 200, borderRadius: 100,
-                                border: '2px dashed #334155',
-                                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                                color: '#64748b', fontSize: 14
-                            }}>
-                                CHART UNAVAILABLE
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 260, position: 'relative' }}>
+                            <svg width="260" height="260" viewBox="0 0 300 300">
+                                {/* Hexagonal Grid */}
+                                {[0.2, 0.4, 0.6, 0.8, 1.0].map(r => (
+                                    <polygon
+                                        key={r}
+                                        points={generateBgPolygon(radarCenter, radarRadius * r)}
+                                        fill="none"
+                                        stroke="#1e293b"
+                                        strokeWidth="1"
+                                    />
+                                ))}
+                                {/* Axis Lines */}
+                                {Array.from({ length: 5 }).map((_, i) => {
+                                    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                                    return (
+                                        <line
+                                            key={i}
+                                            x1={radarCenter.x}
+                                            y1={radarCenter.y}
+                                            x2={radarCenter.x + Math.cos(angle) * radarRadius}
+                                            y2={radarCenter.y + Math.sin(angle) * radarRadius}
+                                            stroke="#1e293b"
+                                            strokeWidth="1"
+                                        />
+                                    );
+                                })}
+                                {/* Data Path */}
+                                <polygon
+                                    points={generateRadarPath(radarScores, radarCenter, radarRadius)}
+                                    fill="rgba(59, 130, 246, 0.3)"
+                                    stroke="#3b82f6"
+                                    strokeWidth="2"
+                                />
+                                {/* Data Points */}
+                                {radarScores.map((score, i) => {
+                                    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                                    const r = (score / 120) * radarRadius;
+                                    return (
+                                        <circle
+                                            key={i}
+                                            cx={radarCenter.x + Math.cos(angle) * r}
+                                            cy={radarCenter.y + Math.sin(angle) * r}
+                                            r="4"
+                                            fill="#fff"
+                                            stroke="#3b82f6"
+                                            strokeWidth="2"
+                                        />
+                                    );
+                                })}
+                                {/* Labels Overlay */}
+                                {['Neuroticism', 'Extraversion', 'Openness', 'Agreeableness', 'Conscientiousness'].map((label, i) => {
+                                    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                                    const r = radarRadius + 25;
+                                    const x = radarCenter.x + Math.cos(angle) * r;
+                                    const y = radarCenter.y + Math.sin(angle) * r;
+                                    return (
+                                        <text
+                                            key={label}
+                                            x={x}
+                                            y={y}
+                                            fill="#94a3b8"
+                                            fontSize="10"
+                                            fontWeight="700"
+                                            textAnchor="middle"
+                                            dominantBaseline="middle"
+                                        >
+                                            {label}
+                                        </text>
+                                    );
+                                })}
+                            </svg>
+                        </div>
+
+                        {/* Big Five Numeric Labels Grid */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%', gap: 10, marginTop: 20 }}>
+                            <div style={{ display: 'flex', width: '45%', justifyContent: 'space-between' }}>
+                                <span style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700 }}>Neuroticism</span>
+                                <span style={{ color: '#ef4444', fontSize: 13, fontWeight: 700 }}>{Math.round(bigFive['N'] || 0)}</span>
+                            </div>
+                            <div style={{ display: 'flex', width: '45%', justifyContent: 'space-between' }}>
+                                <span style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700 }}>Extraversion</span>
+                                <span style={{ color: '#fbbf24', fontSize: 13, fontWeight: 700 }}>{Math.round(bigFive['E'] || 0)}</span>
+                            </div>
+                            <div style={{ display: 'flex', width: '45%', justifyContent: 'space-between' }}>
+                                <span style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700 }}>Openness</span>
+                                <span style={{ color: '#3b82f6', fontSize: 13, fontWeight: 700 }}>{Math.round(bigFive['O'] || 0)}</span>
+                            </div>
+                            <div style={{ display: 'flex', width: '45%', justifyContent: 'space-between' }}>
+                                <span style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700 }}>Agreeableness</span>
+                                <span style={{ color: '#a855f7', fontSize: 13, fontWeight: 700 }}>{Math.round(bigFive['A'] || 0)}</span>
+                            </div>
+                            <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+                                <span style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700 }}>Conscientiousness</span>
+                                <span style={{ color: '#10b981', fontSize: 13, fontWeight: 700 }}>{Math.round(bigFive['C'] || 0)}</span>
                             </div>
                         </div>
 
@@ -184,11 +299,11 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                         <div style={{ display: 'flex', position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
                         <div style={{ display: 'flex', width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>JUNGIAN TYPE</div>
 
-                        <div style={{ display: 'flex', fontSize: 80, fontWeight: 600, color: '#3b82f6', lineHeight: 1, marginBottom: 5 }}>{mbtiType}</div>
-                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 40 }}>Estimated Type</div>
+                        <div style={{ display: 'flex', fontSize: 84, fontWeight: 700, color: '#3b82f6', lineHeight: 1, marginBottom: 10 }}>{mbtiType}</div>
+                        <div style={{ display: 'flex', fontSize: 12, fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: '4px', marginBottom: 40 }}>ESTIMATED TYPE</div>
 
                         {/* Slider Bars */}
-                        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 15 }}>
+                        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 20 }}>
                             {[['I', 'E'], ['S', 'N'], ['T', 'F'], ['J', 'P']].map(([L, R]) => {
                                 const lScore = mbti[L as keyof typeof mbti] || 0;
                                 const rScore = mbti[R as keyof typeof mbti] || 0;
@@ -198,13 +313,19 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                                 if (L === 'S') color = '#22c55e';
 
                                 return (
-                                    <div key={L + R} style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                                        <span style={{ width: 15, fontWeight: 600, color: ratio >= 0.5 ? '#fff' : '#64748b', fontSize: 12 }}>{L}</span>
-                                        <div style={{ flex: 1, height: 6, backgroundColor: '#1f2937', borderRadius: 3, margin: '0 10px', position: 'relative', display: 'flex' }}>
-                                            <div style={{ width: `${ratio * 100}%`, height: '100%', backgroundColor: ratio >= 0.5 ? color : '#1f2937', borderRadius: '3px 0 0 3px' }} />
-                                            <div style={{ width: `${(1 - ratio) * 100}%`, height: '100%', backgroundColor: ratio < 0.5 ? color : '#1f2937', borderRadius: '0 3px 3px 0' }} />
+                                    <div key={L + R} style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
+                                            <span style={{ fontSize: 10, fontWeight: 700, color: '#475569', letterSpacing: '1px' }}>PSI: {(ratio < 0.5 ? 1 - ratio : ratio).toFixed(2)}</span>
                                         </div>
-                                        <span style={{ width: 15, fontWeight: 600, color: ratio < 0.5 ? '#fff' : '#64748b', fontSize: 12, textAlign: 'right' }}>{R}</span>
+                                        <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                                            <span style={{ width: 15, fontWeight: 700, color: ratio >= 0.5 ? '#fff' : '#475569', fontSize: 14 }}>{L}</span>
+                                            <div style={{ flex: 1, height: 8, backgroundColor: '#1e293b', borderRadius: 4, margin: '0 15px', position: 'relative', display: 'flex', overflow: 'hidden' }}>
+                                                <div style={{ width: `${ratio * 100}%`, height: '100%', backgroundColor: ratio >= 0.5 ? color : '#1e293b' }} />
+                                                <div style={{ width: `${(1 - ratio) * 100}%`, height: '100%', backgroundColor: ratio < 0.5 ? color : '#1e293b' }} />
+                                                <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 2, backgroundColor: '#0B1221', transform: 'translateX(-50%)' }} />
+                                            </div>
+                                            <span style={{ width: 15, fontWeight: 700, color: ratio < 0.5 ? '#fff' : '#475569', fontSize: 14, textAlign: 'right' }}>{R}</span>
+                                        </div>
                                     </div>
                                 )
                             })}
@@ -212,31 +333,32 @@ export default async function Image({ params }: { params: Promise<{ model: strin
                     </div>
 
                     {/* COL 3: DISC */}
-                    <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', position: 'relative' }}>
+                    <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1E293B', padding: 24, flexDirection: 'column', position: 'relative' }}>
                         <div style={{ display: 'flex', position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
-                        <div style={{ display: 'flex', width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>DISC ASSESSMENT</div>
+                        <div style={{ display: 'flex', width: '100%', fontSize: 14, fontWeight: 700, color: '#60a5fa', letterSpacing: '0.1em', marginBottom: 20 }}>DISC ASSESSMENT</div>
 
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 40 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 30 }}>
                             {['D', 'I', 'S', 'C'].map(k => (
                                 <div key={k} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                    <span style={{ fontSize: 24, fontWeight: 600, color: k === 'D' ? '#ef4444' : k === 'I' ? '#eab308' : k === 'S' ? '#22c55e' : '#3b82f6', marginBottom: 5 }}>{k}</span>
-                                    <span style={{ fontSize: 28, fontWeight: 600, color: '#fff' }}>{Math.round(disc[k as keyof typeof disc] || 0)}</span>
+                                    <span style={{ fontSize: 24, fontWeight: 700, color: k === 'D' ? '#ef4444' : k === 'I' ? '#fbbf24' : k === 'S' ? '#10b981' : '#3b82f6', marginBottom: 5 }}>{k}</span>
+                                    <span style={{ fontSize: 32, fontWeight: 700, color: '#fff' }}>{Math.round(disc[k as keyof typeof disc] || 0)}</span>
                                 </div>
                             ))}
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 'auto' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 15, marginTop: 'auto' }}>
                             {['Dominance', 'Influence', 'Steadiness', 'Compliance'].map((label, i) => {
                                 const key = label[0];
-                                const color = key === 'D' ? '#ef4444' : key === 'I' ? '#eab308' : key === 'S' ? '#22c55e' : '#3b82f6';
+                                const color = key === 'D' ? '#ef4444' : key === 'I' ? '#fbbf24' : key === 'S' ? '#10b981' : '#3b82f6';
+                                const score = disc[key as keyof typeof disc] || 0;
                                 return (
                                     <div key={label} style={{ display: 'flex', flexDirection: 'column' }}>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#94a3b8', marginBottom: 3 }}>
-                                            <span>{label}</span>
-                                            <span>{Math.round(disc[key] || 0)}/28</span>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, fontWeight: 700, color: '#475569', marginBottom: 5 }}>
+                                            <span style={{ textTransform: 'uppercase' }}>{label}</span>
+                                            <span>{Math.round(score)}/28</span>
                                         </div>
-                                        <div style={{ display: 'flex', width: '100%', height: 10, backgroundColor: '#1e293b', borderRadius: 5 }}>
-                                            <div style={{ width: `${(disc[key] / 28) * 100}%`, height: '100%', backgroundColor: color, borderRadius: 5 }} />
+                                        <div style={{ display: 'flex', width: '100%', height: 12, backgroundColor: '#1e293b', borderRadius: 6, overflow: 'hidden' }}>
+                                            <div style={{ width: `${(score / 28) * 100}%`, height: '100%', backgroundColor: color }} />
                                         </div>
                                     </div>
                                 )

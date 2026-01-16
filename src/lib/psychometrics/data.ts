@@ -9,7 +9,7 @@ export async function getModelProfile(modelName: string): Promise<ModelProfile |
         .from('runs')
         .select('created_at, results, persona')
         .eq('model_name', modelName)
-        .limit(50);
+        .limit(1000);
 
     if (error || !runs || runs.length === 0) {
         console.error('Error fetching model data:', error);
@@ -124,7 +124,7 @@ export async function getModelProfile(modelName: string): Promise<ModelProfile |
 
     // Construct Synthetic Profile
     const syntheticProfile: ModelProfile = {
-        modelName: `${modelName} (Average)`,
+        modelName: modelName,
         persona: topPersona,
         timestamp: Date.now(),
         results: {}
