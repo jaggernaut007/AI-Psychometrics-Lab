@@ -181,8 +181,8 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                     {/* COL 2: MBTI */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
-                        <div style={{ width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>JUNGIAN TYPE</div>
+                        <div style={{ display: 'flex', position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
+                        <div style={{ display: 'flex', width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>JUNGIAN TYPE</div>
 
                         <div style={{ display: 'flex', fontSize: 80, fontWeight: 600, color: '#3b82f6', lineHeight: 1, marginBottom: 5 }}>{mbtiType}</div>
                         <div style={{ display: 'flex', fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 40 }}>Estimated Type</div>
@@ -213,8 +213,8 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                     {/* COL 3: DISC */}
                     <div style={{ display: 'flex', flex: 1, backgroundColor: '#0B1221', borderRadius: 16, border: '1px solid #1e293b', padding: 20, flexDirection: 'column', position: 'relative' }}>
-                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
-                        <div style={{ width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>DISC ASSESSMENT</div>
+                        <div style={{ display: 'flex', position: 'absolute', top: 0, left: 0, right: 0, height: 4, backgroundColor: '#2563eb' }} />
+                        <div style={{ display: 'flex', width: '100%', fontSize: 12, fontWeight: 600, color: '#60a5fa', letterSpacing: '1px', marginBottom: 20, textTransform: 'uppercase' }}>DISC ASSESSMENT</div>
 
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 40 }}>
                             {['D', 'I', 'S', 'C'].map(k => (
@@ -248,10 +248,10 @@ export default async function Image({ params }: { params: Promise<{ model: strin
 
                 {/* FOOTER */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15, paddingTop: 10, borderTop: '1px solid #1e293b', fontSize: 12, color: '#64748b', fontWeight: 600 }}>
-                    <div>
+                    <div style={{ display: 'flex' }}>
                         {new Date().toLocaleDateString()} • explorer/{modelName}
                     </div>
-                    <div>
+                    <div style={{ display: 'flex' }}>
                         MADE BY: AI PSYCHOMETRICS LAB
                     </div>
                 </div>
