@@ -43,7 +43,7 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-screen-xl mx-auto">
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-900">Recent Runs</h1>
                     <Link href="/" className="text-indigo-600 hover:text-indigo-800 font-medium">
@@ -79,7 +79,7 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
                                             {/* Right: Scores */}
                                             <div className="flex flex-wrap items-center gap-6">
                                                 {/* Big Five Mini */}
-                                                <div className="flex gap-2">
+                                                <div className="flex gap-1 sm:gap-2">
                                                     {['O', 'C', 'E', 'A', 'N'].map(t => (
                                                         <div key={t} className="text-center w-8">
                                                             <div className="font-bold text-gray-800 text-sm">
@@ -93,7 +93,7 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
 
                                                 {/* DISC Mini (if present) */}
                                                 {disc && (
-                                                    <div className="flex gap-2 border-l pl-4 border-gray-200">
+                                                    <div className="flex gap-1 sm:gap-2 border-l pl-2 sm:pl-4 border-gray-200">
                                                         {['D', 'I', 'S', 'C'].map(t => (
                                                             <div key={t} className="text-center w-8">
                                                                 <div className="font-bold text-gray-700 text-sm">
@@ -101,6 +101,23 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
                                                                 </div>
                                                                 <div className={`text-[10px] font-bold ${t === 'D' ? 'text-red-500' : t === 'I' ? 'text-yellow-500' : t === 'S' ? 'text-green-500' : 'text-blue-500'
                                                                     }`}>{t}</div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+
+                                                {/* Dark Triad Mini (if present) */}
+                                                {run.results?.darktriad?.traitScores && (
+                                                    <div className="flex gap-1 sm:gap-2 border-l pl-2 sm:pl-4 border-gray-200">
+                                                        {['Machiavellianism', 'Narcissism', 'Psychopathy'].map(t => (
+                                                            <div key={t} className="text-center w-8">
+                                                                <div className="font-bold text-gray-800 text-sm">
+                                                                    {run.results?.darktriad?.traitScores?.[t]?.toFixed(0) || '-'}
+                                                                </div>
+                                                                <div className={`text-[10px] font-bold ${t === 'Machiavellianism' ? 'text-blue-900' : t === 'Narcissism' ? 'text-purple-800' : 'text-red-900'
+                                                                    }`}>
+                                                                    {t[0]}
+                                                                </div>
                                                             </div>
                                                         ))}
                                                     </div>

@@ -41,6 +41,12 @@ Scores are classified into three levels based on their position in the possible 
 *   **Medium:** 56 ≤ Score ≤ 88
 *   **High:** Score > 88
 
+### 6. Dark Triad (Dirty Dozen)
+The system also administers the **Dirty Dozen** inventory to assess the three dark traits.
+*   **Traits:** Machiavellianism, Narcissism, Psychopathy.
+*   **Scoring:** 12 items total (4 per trait), scored 1-5.
+*   **Result:** Trait scores are normalized to a 0-100 scale for comparison.
+
 ## Getting Started
 
 1.  **Install dependencies:**

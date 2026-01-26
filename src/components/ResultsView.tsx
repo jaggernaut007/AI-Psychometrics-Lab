@@ -31,9 +31,10 @@ interface ResultsViewProps {
     results: ModelProfile;
     apiKey?: string; // Made optional
     readOnly?: boolean;
+    sourceLabel?: string;
 }
 
-export function ResultsView({ results, apiKey = '', readOnly = false }: ResultsViewProps) {
+export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabel }: ResultsViewProps) {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -133,26 +134,22 @@ export function ResultsView({ results, apiKey = '', readOnly = false }: ResultsV
 
     const bigFive = results.results['bigfive'];
 
-    if (!bigFive) return null;
-
     // Domains: N, E, O, A, C
     const domains = ['Neuroticism', 'Extraversion', 'Openness', 'Agreeableness', 'Conscientiousness'];
     const domainKeys = ['N', 'E', 'O', 'A', 'C'];
 
-    const dataValues = domainKeys.map(key => bigFive.traitScores[key] || 0);
-
-    const data = {
+    const data = bigFive ? {
         labels: domains,
         datasets: [
             {
                 label: results.modelName,
-                data: dataValues,
+                data: domainKeys.map(key => bigFive.traitScores[key] || 0),
                 backgroundColor: 'rgba(59, 130, 246, 0.2)',
                 borderColor: 'rgba(59, 130, 246, 1)',
                 borderWidth: 2,
             },
         ],
-    };
+    } : null;
 
     const options = {
         scales: {
@@ -170,66 +167,70 @@ export function ResultsView({ results, apiKey = '', readOnly = false }: ResultsV
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mt-6 relative">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">Psychometric Profile</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                    <h3 className="text-lg font-semibold mb-2 text-gray-700">Big Five Overview</h3>
-                    <div className="h-64 w-full">
-                        <Radar data={data} options={options} />
-                    </div>
-                </div>
-
-                <div>
-                    <h3 className="text-lg font-semibold mb-2 text-gray-700">Detailed Scores</h3>
-                    <div className="space-y-2">
-                        {domainKeys.map((key, idx) => (
-                            <div key={key} className="flex justify-between items-center border-b border-gray-100 py-2">
-                                <span className="font-medium text-gray-600">{domains[idx]} ({key})</span>
-                                <span className="font-bold text-gray-900">{bigFive.traitScores[key]?.toFixed(1)}</span>
+            {bigFive && data && (
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 className="text-lg font-semibold mb-2 text-gray-700">Big Five Overview</h3>
+                            <div className="h-64 w-full">
+                                <Radar data={data} options={options} />
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+                        </div>
 
-            <div className="border-t pt-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Trait Interpretations</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {domainKeys.map((key) => {
-                        const score = bigFive.traitScores[key] || 0;
-                        const def = BIG_FIVE_DEFINITIONS[key];
-
-                        let level: 'High' | 'Medium' | 'Low' = 'Medium';
-                        let description = def.medium;
-                        let colorClass = 'bg-gray-200 text-gray-700';
-
-                        if (score > 88) {
-                            level = 'High';
-                            description = def.high;
-                            colorClass = 'bg-blue-100 text-blue-800';
-                        } else if (score < 56) {
-                            level = 'Low';
-                            description = def.low;
-                            colorClass = 'bg-yellow-100 text-yellow-800';
-                        }
-
-                        return (
-                            <div key={key} className="bg-gray-50 p-5 rounded-lg border border-gray-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex justify-between items-start mb-3">
-                                    <h4 className="text-lg font-bold text-gray-800">{def.title}</h4>
-                                    <span className={`px-2 py-1 rounded text-xs font-bold uppercase tracking-wide ${colorClass}`}>
-                                        {level} ({score.toFixed(0)})
-                                    </span>
-                                </div>
-                                <p className="text-xs text-gray-500 mb-4 italic flex-grow">{def.description}</p>
-                                <div className="text-sm text-gray-800 pt-3 border-t border-gray-100 bg-white/50 -mx-1 px-2 rounded">
-                                    <span className="font-semibold text-indigo-600 block mb-1">Interpretation:</span>
-                                    {description}
-                                </div>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-2 text-gray-700">Detailed Scores</h3>
+                            <div className="space-y-2">
+                                {domainKeys.map((key, idx) => (
+                                    <div key={key} className="flex justify-between items-center border-b border-gray-100 py-2">
+                                        <span className="font-medium text-gray-600">{domains[idx]} ({key})</span>
+                                        <span className="font-bold text-gray-900">{bigFive.traitScores[key]?.toFixed(1)}</span>
+                                    </div>
+                                ))}
                             </div>
-                        );
-                    })}
-                </div>
-            </div>
+                        </div>
+                    </div>
+
+                    <div className="border-t pt-6">
+                        <h3 className="text-xl font-bold text-gray-800 mb-4">Trait Interpretations</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                            {domainKeys.map((key) => {
+                                const score = bigFive.traitScores[key] || 0;
+                                const def = BIG_FIVE_DEFINITIONS[key];
+
+                                let level: 'High' | 'Medium' | 'Low' = 'Medium';
+                                let description = def.medium;
+                                let colorClass = 'bg-gray-200 text-gray-700';
+
+                                if (score > 88) {
+                                    level = 'High';
+                                    description = def.high;
+                                    colorClass = 'bg-blue-100 text-blue-800';
+                                } else if (score < 56) {
+                                    level = 'Low';
+                                    description = def.low;
+                                    colorClass = 'bg-yellow-100 text-yellow-800';
+                                }
+
+                                return (
+                                    <div key={key} className="bg-gray-50 p-5 rounded-lg border border-gray-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
+                                        <div className="flex justify-between items-start mb-3">
+                                            <h4 className="text-lg font-bold text-gray-800">{def.title}</h4>
+                                            <span className={`px-2 py-1 rounded text-xs font-bold uppercase tracking-wide ${colorClass}`}>
+                                                {level} ({score.toFixed(0)})
+                                            </span>
+                                        </div>
+                                        <p className="text-xs text-gray-500 mb-4 italic flex-grow">{def.description}</p>
+                                        <div className="text-sm text-gray-800 pt-3 border-t border-gray-100 bg-white/50 -mx-1 px-2 rounded">
+                                            <span className="font-semibold text-indigo-600 block mb-1">Interpretation:</span>
+                                            {description}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </>
+            )}
 
             {/* MBTI Results */}
             {(results.results['mbti'] || results.results['mbti_derived']) && (() => {
@@ -326,7 +327,7 @@ export function ResultsView({ results, apiKey = '', readOnly = false }: ResultsV
                                     {dim}
                                 </span>
                                 <span className="text-3xl font-bold text-gray-800">
-                                    {Number(results.results['disc'].traitScores[dim]).toFixed(2)}
+                                    {Number(results.results['disc'].traitScores[dim]).toFixed(0)}
                                 </span>
                                 <div className="w-full h-24 bg-gray-100 rounded-b-lg relative mt-2 w-8">
                                     <div
@@ -346,6 +347,42 @@ export function ResultsView({ results, apiKey = '', readOnly = false }: ResultsV
                         <p><strong>I</strong> = Influence (Social, Enthusiastic)</p>
                         <p><strong>S</strong> = Steadiness (Patient, Reliable)</p>
                         <p><strong>C</strong> = Compliance (Analytical, Precise)</p>
+                    </div>
+                </div>
+            )}
+            {/* DARK TRIAD Results */}
+            {results.results['darktriad'] && (
+                <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mt-6 border-l-4 border-l-gray-800">
+                    <h3 className="text-xl font-semibold mb-4 text-gray-800">Dark Triad Assessment</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        {['Machiavellianism', 'Narcissism', 'Psychopathy'].map(trait => {
+                            const score = results.results['darktriad'].traitScores[trait] || 0;
+                            let color = 'bg-gray-500';
+                            if (trait === 'Narcissism') color = 'bg-purple-500';
+                            if (trait === 'Psychopathy') color = 'bg-red-600';
+                            if (trait === 'Machiavellianism') color = 'bg-blue-800';
+
+                            return (
+                                <div key={trait} className="flex flex-col items-center p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                    <h4 className="font-bold text-gray-700 mb-2">{trait}</h4>
+                                    <span className="text-3xl font-bold text-gray-900 mb-4">{score.toFixed(0)}</span>
+
+                                    {/* Vertical Bar */}
+                                    <div className="h-32 w-8 bg-gray-200 rounded-full relative overflow-hidden ring-1 ring-gray-300">
+                                        <div
+                                            className={`absolute bottom-0 w-full rounded-b-full transition-all duration-1000 ${color}`}
+                                            style={{ height: `${score}%` }}
+                                        />
+                                    </div>
+                                    <span className="text-xs text-gray-500 mt-2 font-mono">0-100</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded border border-gray-200">
+                        <p className="mb-2"><strong>Machiavellianism:</strong> Strategic manipulation and cynicism.</p>
+                        <p className="mb-2"><strong>Narcissism:</strong> Grandiosity, entitlement, and lack of empathy.</p>
+                        <p><strong>Psychopathy:</strong> Impulsivity and callousness.</p>
                     </div>
                 </div>
             )}
@@ -413,106 +450,158 @@ export function ResultsView({ results, apiKey = '', readOnly = false }: ResultsV
 
                     {!readOnly && saveStatus === 'error' && <p className="text-red-500 text-sm">Failed to save run. API may be down.</p>}
                 </div>
-            </div>
 
-            {/* Share Modal Overlay */}
-            {showShareModal && (
-                <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowShareModal(false)}>
-                    <div
-                        className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 animate-in fade-in zoom-in-95 duration-200"
-                        onClick={e => e.stopPropagation()}
-                    >
-                        <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xl font-bold text-gray-900">Share Results</h3>
-                            <button
-                                onClick={() => setShowShareModal(false)}
-                                className="text-gray-400 hover:text-gray-600 transition-colors"
+
+                {/* Audit Logs Section */}
+
+
+
+                {/* Share Modal Overlay */}
+                {
+                    showShareModal && (
+                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowShareModal(false)}>
+                            <div
+                                className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 animate-in fade-in zoom-in-95 duration-200"
+                                onClick={e => e.stopPropagation()}
                             >
-                                ✕
-                            </button>
+                                <div className="flex justify-between items-center mb-6">
+                                    <h3 className="text-xl font-bold text-gray-900">Share Results</h3>
+                                    <button
+                                        onClick={() => setShowShareModal(false)}
+                                        className="text-gray-400 hover:text-gray-600 transition-colors"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <a
+                                            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => copyToClipboard(clipboardText)}
+                                            className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-black hover:text-white transition-all group border border-gray-100 cursor-pointer"
+                                        >
+                                            {/* X Logo */}
+                                            <svg viewBox="0 0 24 24" aria-hidden="true" className="w-8 h-8 mb-2 text-black group-hover:text-white fill-current">
+                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                            </svg>
+                                            <span className="font-medium">X</span>
+                                        </a>
+
+                                        <a
+                                            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => copyToClipboard(clipboardText)}
+                                            className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-[#0077b5] hover:text-white transition-all group border border-gray-100 cursor-pointer"
+                                        >
+                                            <Linkedin className="w-8 h-8 mb-2 text-[#0077b5] group-hover:text-white" />
+                                            <span className="font-medium">LinkedIn</span>
+                                        </a>
+
+                                        <a
+                                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => copyToClipboard(clipboardText)}
+                                            className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-[#1877f2] hover:text-white transition-all group border border-gray-100 cursor-pointer"
+                                        >
+                                            <Facebook className="w-8 h-8 mb-2 text-[#1877f2] group-hover:text-white" />
+                                            <span className="font-medium">Facebook</span>
+                                        </a>
+                                        <button
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(clipboardText);
+                                                alert("Link and details copied! You can now paste it on Instagram.");
+                                            }}
+                                            className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 hover:text-white transition-all group border border-gray-100 cursor-pointer"
+                                        >
+                                            <Instagram className="w-8 h-8 mb-2 text-pink-600 group-hover:text-white" />
+                                            <span className="font-medium">Instagram</span>
+                                        </button>
+
+
+                                    </div>
+
+                                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-sm text-blue-800">
+                                        <p className="font-semibold mb-1">PRO TIP:</p>
+                                        <p>Don't forget to <button onClick={handleDownloadImage} className="underline font-bold hover:text-blue-600">Download the Image</button> first to attach it to your post!</p>
+                                    </div>
+
+                                    <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg text-xs text-gray-500 font-mono break-all">
+                                        <LinkIcon className="w-4 h-4 flex-shrink-0" />
+                                        {shareUrl}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        <div className="space-y-6">
-                            <div className="grid grid-cols-2 gap-4">
-                                <a
-                                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => copyToClipboard(clipboardText)}
-                                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-black hover:text-white transition-all group border border-gray-100 cursor-pointer"
-                                >
-                                    {/* X Logo */}
-                                    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-8 h-8 mb-2 text-black group-hover:text-white fill-current">
-                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-                                    </svg>
-                                    <span className="font-medium">X</span>
-                                </a>
-
-                                <a
-                                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => copyToClipboard(clipboardText)}
-                                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-[#0077b5] hover:text-white transition-all group border border-gray-100 cursor-pointer"
-                                >
-                                    <Linkedin className="w-8 h-8 mb-2 text-[#0077b5] group-hover:text-white" />
-                                    <span className="font-medium">LinkedIn</span>
-                                </a>
-
-                                <a
-                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => copyToClipboard(clipboardText)}
-                                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-[#1877f2] hover:text-white transition-all group border border-gray-100 cursor-pointer"
-                                >
-                                    <Facebook className="w-8 h-8 mb-2 text-[#1877f2] group-hover:text-white" />
-                                    <span className="font-medium">Facebook</span>
-                                </a>
-                                <button
-                                    onClick={() => {
-                                        navigator.clipboard.writeText(clipboardText);
-                                        alert("Link and details copied! You can now paste it on Instagram.");
-                                    }}
-                                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 hover:text-white transition-all group border border-gray-100 cursor-pointer"
-                                >
-                                    <Instagram className="w-8 h-8 mb-2 text-pink-600 group-hover:text-white" />
-                                    <span className="font-medium">Instagram</span>
-                                </button>
+                    )
+                }
 
 
-                            </div>
+                {/* Hidden Summary Card for Capture */}
+                <div className="overflow-hidden h-0 w-0">
+                    <div className="fixed top-0 left-[-9999px]">
+                        <SummaryCard ref={summaryRef} profile={results} sourceLabel={sourceLabel} />
+                    </div>
+                </div>
 
-                            <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-sm text-blue-800">
-                                <p className="font-semibold mb-1">PRO TIP:</p>
-                                <p>Don't forget to <button onClick={handleDownloadImage} className="underline font-bold hover:text-blue-600">Download the Image</button> first to attach it to your post!</p>
-                            </div>
+                {/* Optional: Visible Preview (Scaled Down) */}
+                <div className="mt-8">
+                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Image Preview</h4>
+                    <div className="overflow-hidden border border-gray-300 rounded-lg bg-gray-100 p-4 flex justify-center items-start transition-all duration-300">
+                        {/* Width/Height Wrapper matching the SCALED dimensions */}
+                        <div className="relative shrink-0
+                        w-[300px] h-[200px]
+                        sm:w-[420px] sm:h-[280px]
+                        md:w-[600px] md:h-[400px]
+                        transition-all duration-300">
 
-                            <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg text-xs text-gray-500 font-mono break-all">
-                                <LinkIcon className="w-4 h-4 flex-shrink-0" />
-                                {shareUrl}
+                            {/* Scaled Content - Fixed at original 1200x800 */}
+                            <div className="absolute top-0 left-0 origin-top-left
+                            w-[1200px] h-[800px]
+                            scale-[0.25]
+                            sm:scale-[0.35]
+                            md:scale-[0.5]
+                            transition-transform duration-300">
+                                <SummaryCard profile={results} sourceLabel={sourceLabel} />
                             </div>
                         </div>
                     </div>
                 </div>
-            )}
-
-
-            {/* Hidden Summary Card for Capture */}
-            <div className="overflow-hidden h-0 w-0">
-                <div className="fixed top-0 left-[-9999px]">
-                    <SummaryCard ref={summaryRef} profile={results} />
-                </div>
-            </div>
-
-            {/* Optional: Visible Preview (Scaled Down) */}
-            <div className="mt-8">
-                <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Image Preview</h4>
-                <div className="overflow-auto border border-gray-300 rounded-lg bg-gray-100 p-4 flex justify-center">
-                    <div className="scale-[0.5] origin-top">
-                        <SummaryCard profile={results} />
-                    </div>
-                </div>
+                {/* Audit Logs Section - Moved to bottom */}
+                {
+                    results.logs && results.logs.length > 0 && (
+                        <div className="mt-8 border-t pt-6">
+                            <h3 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                                <span>🛡️</span> Verification Logs
+                            </h3>
+                            <details className="group bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+                                <summary className="cursor-pointer p-4 font-mono text-gray-300 hover:text-white hover:bg-gray-800 transition-colors flex justify-between items-center select-none">
+                                    <span>View Raw Execution Logs ({results.logs.length} entries)</span>
+                                    <span className="text-xs text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+                                </summary>
+                                {/* Removed max-h-96 to show full logs when expanded */}
+                                <div className="p-4 font-mono text-xs text-green-400 bg-black space-y-1 overflow-x-auto">
+                                    {results.logs.map((log, i) => (
+                                        <div key={i} className={`flex gap-3 border-b border-gray-800 pb-1 mb-1 last:border-0 ${log.type === 'error' ? 'text-red-400' :
+                                            log.type === 'success' ? 'text-emerald-400' :
+                                                'text-gray-400'
+                                            }`}>
+                                            <span className="text-gray-600 shrink-0 select-none">[{log.timestamp}]</span>
+                                            <span className="break-all whitespace-pre-wrap">{log.message}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </details>
+                            <p className="text-xs text-gray-500 mt-2">
+                                These logs prove the authenticity of the test results by showing the raw model responses for every question.
+                            </p>
+                        </div>
+                    )
+                }
             </div>
         </div >
     );

@@ -18,7 +18,7 @@ const PREDEFINED_PERSONAS = [
 export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
     const [apiKey, setApiKey] = React.useState(process.env.NEXT_PUBLIC_OPENROUTER_API_KEY || '');
     const [model, setModel] = React.useState('');
-    const [inventories, setInventories] = React.useState<string[]>(['bigfive', 'disc', 'mbti']);
+    const [inventories, setInventories] = React.useState<string[]>(['bigfive', 'disc', 'mbti', 'darktriad']);
     const [selectedPersona, setSelectedPersona] = React.useState('Base Model');
     const [customSystemPrompt, setCustomSystemPrompt] = React.useState('');
 
@@ -154,6 +154,19 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                                 className="rounded text-blue-600 focus:ring-blue-500"
                             />
                             <span>DISC Assessment</span>
+                        </label>
+                        <label className="flex items-center gap-2 text-gray-900">
+                            <input
+                                type="checkbox"
+                                checked={inventories.includes('darktriad')}
+                                onChange={(e) => {
+                                    if (e.target.checked) setInventories([...inventories, 'darktriad']);
+                                    else setInventories(inventories.filter(i => i !== 'darktriad'));
+                                }}
+                                disabled={disabled}
+                                className="rounded text-blue-600 focus:ring-blue-500"
+                            />
+                            <span>Dark Triad</span>
                         </label>
                     </div>
                 </div>

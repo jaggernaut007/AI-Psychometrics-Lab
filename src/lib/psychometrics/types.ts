@@ -26,4 +26,11 @@ export interface ModelProfile {
   systemPrompt?: string; // The full system prompt used
   timestamp: number;
   results: Record<string, InventoryResult>;
+  logs?: LogEntry[]; // Optional logs for verification
+}
+
+export interface LogEntry {
+  timestamp: string;
+  message: string;
+  type: 'info' | 'error' | 'success';
 }

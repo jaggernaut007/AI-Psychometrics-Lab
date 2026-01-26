@@ -19,6 +19,8 @@ export default async function RunDetailPage({ params }: PageProps) {
 
     const { id } = await params;
 
+
+
     const { data: run, error } = await supabase
         .from('runs')
         .select('*')
@@ -42,12 +44,13 @@ export default async function RunDetailPage({ params }: PageProps) {
         modelName: run.model_name,
         timestamp: new Date(run.created_at).getTime(),
         results: run.results, // Assuming exact shape match
+        logs: run.execution_logs, // Pass logs to ResultsView
     };
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
-                <div className="mb-8 flex items-center justify-between">
+                <div className="mb-8 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <Link href="/runs" className="text-indigo-600 hover:text-indigo-800 font-medium">
                         ← Back to Recent Runs
                     </Link>
@@ -56,12 +59,17 @@ export default async function RunDetailPage({ params }: PageProps) {
                     </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-6">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{run.model_name}</h1>
+                <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-6 w-full">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 break-words">{run.model_name}</h1>
                     {run.model_version && <p className="text-gray-600">Version: {run.model_version}</p>}
                 </div>
 
-                <ResultsView results={profile} apiKey="" readOnly={true} />
+                <ResultsView
+                    results={profile}
+                    apiKey=""
+                    readOnly={true}
+                    sourceLabel={`runs/${id}`}
+                />
             </div>
         </div>
     );

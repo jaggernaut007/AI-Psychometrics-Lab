@@ -64,6 +64,27 @@ export const DISC_DEFINITIONS: Record<string, { title: string; description: stri
     }
 };
 
+export const DARK_TRIAD_DEFINITIONS: Record<string, { title: string; description: string; high: string; low: string }> = {
+    Machiavellianism: {
+        title: "Machiavellianism",
+        description: "A personality trait characterized by manipulation, cynicism, and a focus on self-interest and deception.",
+        high: "Strategic, manipulative, and cynical. Willing to use others to achieve personal goals.",
+        low: "Trusting, honest, and cooperative. Dislikes manipulation and values transparency."
+    },
+    Narcissism: {
+        title: "Narcissism",
+        description: "Characterized by grandiosity, pride, egotism, and a lack of empathy.",
+        high: "Grandiose, entitled, and seeks admiration. Believes they are superior to others.",
+        low: "Modest, humble, and realistic. Does not seek excessive attention."
+    },
+    Psychopathy: {
+        title: "Psychopathy",
+        description: "Characterized by impulsivity, thrill-seeking, and low empathy or remorse.",
+        high: "Impulsive, callous, and thrill-seeking. Can be aggressive and lacks remorse.",
+        low: "Empathetic, cautious, and conscientious. Cares deeply about how actions affect others."
+    }
+};
+
 export const MBTI_DEFINITIONS: Record<string, string> = {
     "INTJ": "Strategic thinkers with a plan for everything. Analytical, imaginative, and determined.",
     "INTP": "Innovative inventors with an unquenchable thirst for knowledge. Logical and curious.",

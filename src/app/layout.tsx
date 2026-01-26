@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://aipsychometricslab.com'),
     title: "AI Psychometrics Lab",
     description: "Stateless Independent Context Window Approach",
 };
@@ -15,11 +16,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`${inter.className} min-h-screen flex flex-col`}>
                 {/* Global Header */}
                 <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                         <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
                             <img
                                 src="/logo.png"
@@ -30,11 +31,11 @@ export default function RootLayout({
                                 AI Psychometrics Lab
                             </span>
                         </a>
-                        <div className="flex items-center gap-6">
-                            <a href="/about" className="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">
+                        <div className="flex items-center gap-2 sm:gap-6">
+                            <a href="/about" className="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors py-2 px-1">
                                 About
                             </a>
-                            <a href="/explorer" className="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">
+                            <a href="/explorer" className="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors py-2 px-1">
                                 Explorer
                             </a>
                         </div>
