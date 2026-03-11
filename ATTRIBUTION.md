@@ -15,3 +15,9 @@ This project does **not** include official MBTI® instrument items. Any type lab
 
 ## DISC
 This project includes a DISC-style word-choice inventory and scoring for research/educational use. It is not affiliated with or endorsed by any specific DISC publisher.
+
+## Dark Triad (SD3)
+This project includes the Short Dark Triad (SD3) inventory for measuring subclinical Machiavellianism, Narcissism, and Psychopathy.
+
+Reference:
+- Jones, D. N., & Paulhus, D. L. (2014). Introducing the Short Dark Triad (SD3): A brief measure of dark personality traits. *Assessment*, 21(1), 28–41.
