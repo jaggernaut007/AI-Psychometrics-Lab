@@ -1,0 +1,25 @@
+{
+  "name": "@apl/psychometrics-core",
+  "version": "1.0.0",
+  "description": "Core psychometric assessment engine for AI Psychometrics Lab",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "files": ["dist"],
+  "author": "Gordon Olson, Shreyas Jagannath",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5",
+    "vitest": "^4.0.18"
+  }
+}

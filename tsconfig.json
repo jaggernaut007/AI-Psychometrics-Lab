@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@apl/psychometrics-core": ["./packages/psychometrics-core/src/index.ts"]
     }
   },
   "include": [
