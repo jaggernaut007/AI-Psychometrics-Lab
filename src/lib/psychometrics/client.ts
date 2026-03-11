@@ -6,7 +6,7 @@ export async function fetchOpenRouterResponse(
     systemPrompt: string = ""
 ): Promise<string> {
     try {
-        const messages = [];
+        const messages: Array<{ role: 'system' | 'user'; content: string }> = [];
         if (systemPrompt) {
             messages.push({ role: "system", content: systemPrompt });
         }
@@ -88,11 +88,11 @@ export async function fetchOpenRouterResponse(
                     return JSON.stringify(data);
                 }
                 return message.content;
-            } catch (error: any) {
+            } catch (error: unknown) {
                 clearTimeout(timeoutId);
                 lastError = error;
 
-                const isAbort = error?.name === 'AbortError';
+                const isAbort = error instanceof Error && error.name === 'AbortError';
                 const isNetwork = error instanceof TypeError;
 
                 if (attempt < MAX_RETRIES && (isAbort || isNetwork)) {

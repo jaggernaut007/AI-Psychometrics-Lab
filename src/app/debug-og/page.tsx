@@ -187,7 +187,7 @@ export default function DebugOGPage() {
 
                         {/* Bars moved to bottom */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 'auto' }}>
-                            {['Dominance', 'Influence', 'Steadiness', 'Compliance'].map((label, i) => {
+                            {['Dominance', 'Influence', 'Steadiness', 'Compliance'].map((label) => {
                                 const key = label[0];
                                 const color = key === 'D' ? '#ef4444' : key === 'I' ? '#eab308' : key === 'S' ? '#22c55e' : '#3b82f6';
                                 const val = disc[key as keyof typeof disc] || 0;
@@ -211,7 +211,7 @@ export default function DebugOGPage() {
                 {/* FOOTER */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15, paddingTop: 10, borderTop: '1px solid #1F2937', fontSize: 12, color: '#64748b', fontWeight: 600 }}>
                     <div>
-                        {new Date().getFullYear()} • explorer/{modelName}
+                        {new Date().getFullYear()} | explorer/{modelName}
                     </div>
                     <div style={{ color: '#60a5fa' }}>
                         MADE BY: AI PSYCHOMETRICS LAB
@@ -222,3 +222,5 @@ export default function DebugOGPage() {
         </div>
     );
 }
+
+

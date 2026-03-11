@@ -3,7 +3,7 @@
 import React, { useRef, useState } from 'react';
 import { saveRun } from '@/app/actions';
 import { ModelProfile } from '../lib/psychometrics/types';
-import { Share2, Download, Twitter, Linkedin, Facebook, Instagram, Link as LinkIcon } from 'lucide-react';
+import { Share2, Download, Linkedin, Facebook, Instagram, Link as LinkIcon } from 'lucide-react';
 import { BIG_FIVE_DEFINITIONS } from '../lib/psychometrics/definitions';
 import { SummaryCard } from './SummaryCard';
 
@@ -34,7 +34,7 @@ interface ResultsViewProps {
     sourceLabel?: string;
 }
 
-export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabel }: ResultsViewProps) {
+export function ResultsView({ results, readOnly = false, sourceLabel }: ResultsViewProps) {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -116,7 +116,7 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
     const bigFiveResult = results.results['bigfive'];
     const discResult = results.results['disc'];
 
-    let details = [];
+    const details = [];
     if (results.persona) details.push(`Type: ${results.persona}`);
     if (mbtiResult) details.push(`MBTI: ${mbtiResult.type}`);
     if (bigFiveResult) {
@@ -164,25 +164,25 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
     };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mt-6 relative">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Psychometric Profile</h2>
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 mt-6 relative">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 text-gray-800">Psychometric Profile</h2>
 
             {bigFive && data && (
                 <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8">
                         <div>
-                            <h3 className="text-lg font-semibold mb-2 text-gray-700">Big Five Overview</h3>
+                            <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-700">Big Five Overview</h3>
                             <div className="h-64 w-full">
                                 <Radar data={data} options={options} />
                             </div>
                         </div>
 
                         <div>
-                            <h3 className="text-lg font-semibold mb-2 text-gray-700">Detailed Scores</h3>
+                            <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-700">Detailed Scores</h3>
                             <div className="space-y-2">
                                 {domainKeys.map((key, idx) => (
-                                    <div key={key} className="flex justify-between items-center border-b border-gray-100 py-2">
-                                        <span className="font-medium text-gray-600">{domains[idx]} ({key})</span>
+                                    <div key={key} className="flex justify-between items-center gap-3 border-b border-gray-100 py-2">
+                                        <span className="font-medium text-gray-600 text-sm sm:text-base">{domains[idx]} ({key})</span>
                                         <span className="font-bold text-gray-900">{bigFive.traitScores[key]?.toFixed(1)}</span>
                                     </div>
                                 ))}
@@ -237,9 +237,9 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                 const mbti = results.results['mbti'] || results.results['mbti_derived'];
                 return (
                     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mt-6">
-                        <h3 className="text-xl font-semibold mb-4 text-gray-800">MBTI Type ({mbti.type})</h3>
+                        <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">MBTI Type ({mbti.type})</h3>
                         <div className="text-center mb-6">
-                            <span className="text-5xl font-bold text-blue-600 tracking-widest">
+                            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-600 tracking-widest">
                                 {mbti.type}
                             </span>
                             <p className="text-sm text-gray-500 mt-2">Jungian Type Estimate</p>
@@ -258,10 +258,10 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
 
                                     return (
                                         <div key={dim} className="space-y-1">
-                                            <div className="flex justify-between text-base font-medium text-gray-700">
-                                                <span>{left} ({leftScore?.toFixed(1)})</span>
-                                                <span className="text-gray-400 text-xs">PSI: {score.toFixed(2)}</span>
-                                                <span>{right} ({rightScore?.toFixed(1)})</span>
+                                            <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-sm sm:text-base font-medium text-gray-700">
+                                                <span className="truncate">{left} ({leftScore?.toFixed(1)})</span>
+                                                <span className="text-gray-400 text-[10px] sm:text-xs whitespace-nowrap">PSI: {score.toFixed(2)}</span>
+                                                <span className="truncate text-right">{right} ({rightScore?.toFixed(1)})</span>
                                             </div>
                                             <div className="h-2 bg-gray-200 rounded-full overflow-hidden flex">
                                                 <div
@@ -288,10 +288,10 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
 
                                     return (
                                         <div key={`${left}${right}`} className="space-y-1">
-                                            <div className="flex justify-between text-base font-medium text-gray-700">
-                                                <span>{left} ({leftScore.toFixed(1)})</span>
-                                                <span className="text-gray-400 text-xs">PSI: {psiVal.toFixed(2)}</span>
-                                                <span>{right} ({rightScore.toFixed(1)})</span>
+                                            <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-sm sm:text-base font-medium text-gray-700">
+                                                <span className="truncate">{left} ({leftScore.toFixed(1)})</span>
+                                                <span className="text-gray-400 text-[10px] sm:text-xs whitespace-nowrap">PSI: {psiVal.toFixed(2)}</span>
+                                                <span className="truncate text-right">{right} ({rightScore.toFixed(1)})</span>
                                             </div>
                                             <div className="h-2 bg-gray-200 rounded-full overflow-hidden flex">
                                                 <div
@@ -315,8 +315,8 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
             {/* DISC Results */}
             {results.results['disc'] && (
                 <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mt-6 border-l-4 border-l-red-500">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-800">DISC Assessment</h3>
-                    <div className="grid grid-cols-4 gap-4 text-center mb-6">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">DISC Assessment</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-6">
                         {['D', 'I', 'S', 'C'].map(dim => (
                             <div key={dim} className="flex flex-col items-center">
                                 <span className={`text-2xl font-bold ${dim === 'D' ? 'text-red-600' :
@@ -353,7 +353,7 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
             {/* DARK TRIAD Results */}
             {results.results['darktriad'] && (
                 <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 mt-6 border-l-4 border-l-gray-800">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-800">Dark Triad Assessment</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">Dark Triad Assessment</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                         {['Machiavellianism', 'Narcissism', 'Psychopathy'].map(trait => {
                             const score = results.results['darktriad'].traitScores[trait] || 0;
@@ -396,24 +396,24 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                         Download a high-quality, data-accurate infographic summary of this profile{readOnly ? '' : ', or save it to the public leaderboard'}.
                     </p>
 
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
                         {/* Download Button */}
                         <button
                             onClick={handleDownloadImage}
                             disabled={isGenerating}
-                            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-white font-bold transition-all shadow-md ${isGenerating
+                            className={`w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-white font-bold transition-all shadow-md ${isGenerating
                                 ? 'bg-gray-400 cursor-not-allowed'
                                 : 'bg-gray-700 hover:bg-gray-800 hover:shadow-lg'
                                 }`}
                         >
-                            {isGenerating ? <span className="animate-spin">⏳</span> : <Download className="w-5 h-5" />}
+                            {isGenerating ? <span className="animate-pulse">...</span> : <Download className="w-5 h-5" />}
                             Download Image
                         </button>
 
                         {/* Share Button - Opens Modal */}
                         <button
                             onClick={handleShareClick}
-                            className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-white font-bold transition-all shadow-md bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 hover:shadow-lg"
+                            className="w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-white font-bold transition-all shadow-md bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 hover:shadow-lg"
                         >
                             <Share2 className="w-5 h-5" />
                             Share Fingerprint
@@ -424,7 +424,7 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                             <button
                                 onClick={handleSaveRun}
                                 disabled={isSaving || saveStatus === 'success'}
-                                className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-white font-bold transition-all shadow-md ${saveStatus === 'success'
+                                className={`w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-white font-bold transition-all shadow-md ${saveStatus === 'success'
                                     ? 'bg-green-600 cursor-default'
                                     : isSaving
                                         ? 'bg-gray-400 cursor-not-allowed'
@@ -433,15 +433,15 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                             >
                                 {isSaving ? (
                                     <>
-                                        <span className="animate-spin">⏳</span> Saving...
+                                        <span className="animate-pulse">...</span> Saving...
                                     </>
                                 ) : saveStatus === 'success' ? (
                                     <>
-                                        <span>✅</span> Saved!
+                                        Saved!
                                     </>
                                 ) : (
                                     <>
-                                        <span>☁️</span> Upload to Leaderboard
+                                        Upload to Leaderboard
                                     </>
                                 )}
                             </button>
@@ -461,7 +461,7 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                     showShareModal && (
                         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setShowShareModal(false)}>
                             <div
-                                className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 animate-in fade-in zoom-in-95 duration-200"
+                                className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 animate-in fade-in zoom-in-95 duration-200"
                                 onClick={e => e.stopPropagation()}
                             >
                                 <div className="flex justify-between items-center mb-6">
@@ -470,12 +470,12 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                                         onClick={() => setShowShareModal(false)}
                                         className="text-gray-400 hover:text-gray-600 transition-colors"
                                     >
-                                        ✕
+                                        X
                                     </button>
                                 </div>
 
                                 <div className="space-y-6">
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <a
                                             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
                                             target="_blank"
@@ -527,7 +527,7 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
 
                                     <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-sm text-blue-800">
                                         <p className="font-semibold mb-1">PRO TIP:</p>
-                                        <p>Don't forget to <button onClick={handleDownloadImage} className="underline font-bold hover:text-blue-600">Download the Image</button> first to attach it to your post!</p>
+                                        <p>Don&apos;t forget to <button onClick={handleDownloadImage} className="underline font-bold hover:text-blue-600">Download the Image</button> first to attach it to your post!</p>
                                     </div>
 
                                     <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg text-xs text-gray-500 font-mono break-all">
@@ -551,22 +551,38 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                 {/* Optional: Visible Preview (Scaled Down) */}
                 <div className="mt-8">
                     <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Image Preview</h4>
-                    <div className="overflow-hidden border border-gray-300 rounded-lg bg-gray-100 p-4 flex justify-center items-start transition-all duration-300">
-                        {/* Width/Height Wrapper matching the SCALED dimensions */}
-                        <div className="relative shrink-0
-                        w-[300px] h-[200px]
-                        sm:w-[420px] sm:h-[280px]
-                        md:w-[600px] md:h-[400px]
-                        transition-all duration-300">
-
-                            {/* Scaled Content - Fixed at original 1200x800 */}
-                            <div className="absolute top-0 left-0 origin-top-left
-                            w-[1200px] h-[800px]
-                            scale-[0.25]
-                            sm:scale-[0.35]
-                            md:scale-[0.5]
-                            transition-transform duration-300">
-                                <SummaryCard profile={results} sourceLabel={sourceLabel} />
+                    <div className="overflow-hidden border border-gray-300 rounded-lg bg-gray-100 p-2 sm:p-4 w-full">
+                        {/* Responsive wrapper with max width and centering */}
+                        <div className="w-full max-w-3xl mx-auto">
+                            {/* Aspect-ratio container maintains 1200:800 (3:2) proportions */}
+                            <div className="relative w-full overflow-hidden" style={{ paddingBottom: '66.667%' }}>
+                                {/* Scaled Content - Fixed at original 1200x800, CSS transforms handle sizing */}
+                                <div
+                                    className="absolute top-0 left-0 w-[1200px] h-[800px] origin-top-left
+                                    scale-[calc(min(100cqw,768px)/1200)]"
+                                    style={{
+                                        /* Fallback for browsers without cqw: use vw-based calc */
+                                        transform: 'scale(var(--preview-scale, 0.5))'
+                                    }}
+                                    ref={(el) => {
+                                        if (!el) return;
+                                        const parent = el.parentElement;
+                                        if (!parent) return;
+                                        // Set initial scale and observe resize
+                                        const setScale = () => {
+                                            const scale = parent.clientWidth / 1200;
+                                            el.style.setProperty('--preview-scale', String(scale));
+                                        };
+                                        setScale();
+                                        const observer = new ResizeObserver(() => setScale());
+                                        observer.observe(parent);
+                                        // Store reference for cleanup on unmount
+                                        (el as any).__resizeObserver = observer;
+                                        return () => observer.disconnect();
+                                    }}
+                                >
+                                    <SummaryCard profile={results} sourceLabel={sourceLabel} />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -576,12 +592,12 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
                     results.logs && results.logs.length > 0 && (
                         <div className="mt-8 border-t pt-6">
                             <h3 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                                <span>🛡️</span> Verification Logs
+                                <span>Verification Logs</span>
                             </h3>
                             <details className="group bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
                                 <summary className="cursor-pointer p-4 font-mono text-gray-300 hover:text-white hover:bg-gray-800 transition-colors flex justify-between items-center select-none">
                                     <span>View Raw Execution Logs ({results.logs.length} entries)</span>
-                                    <span className="text-xs text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+                                    <span className="text-xs text-gray-500 group-open:rotate-180 transition-transform">v</span>
                                 </summary>
                                 {/* Removed max-h-96 to show full logs when expanded */}
                                 <div className="p-4 font-mono text-xs text-green-400 bg-black space-y-1 overflow-x-auto">
@@ -606,3 +622,5 @@ export function ResultsView({ results, apiKey = '', readOnly = false, sourceLabe
         </div >
     );
 }
+
+

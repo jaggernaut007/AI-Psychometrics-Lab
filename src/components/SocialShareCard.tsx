@@ -2,7 +2,6 @@
 
 import React, { forwardRef } from 'react';
 import { ModelProfile } from '@/lib/psychometrics/types';
-import { Share2 } from 'lucide-react';
 
 interface SocialShareCardProps {
     results: ModelProfile;

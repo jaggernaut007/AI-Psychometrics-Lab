@@ -165,7 +165,7 @@ export function ComparisonChart({ models }: ComparisonChartProps) {
                         className="p-1 hover:bg-gray-100 rounded-full text-gray-400 hover:text-indigo-600 transition-colors"
                         title="Download Chart Image"
                     >
-                        {isDownloading ? <span className="text-xs animate-spin">⏳</span> : <Download className="w-4 h-4" />}
+                        {isDownloading ? <span className="text-xs animate-pulse">...</span> : <Download className="w-4 h-4" />}
                     </button>
                 </div>
                 <div className="text-[10px] font-bold opacity-60 uppercase tracking-widest text-right leading-tight text-indigo-600">
@@ -189,3 +189,5 @@ export function ComparisonChart({ models }: ComparisonChartProps) {
         </div>
     );
 }
+
+

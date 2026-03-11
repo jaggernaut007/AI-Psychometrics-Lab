@@ -37,25 +37,25 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
     };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-            <div className="flex items-center gap-2 mb-4 text-xl font-semibold text-gray-800">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200">
+            <div className="flex items-center gap-2 mb-4 text-lg sm:text-xl font-semibold text-gray-800">
                 <Settings className="w-6 h-6" />
                 <h2>Configuration</h2>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-start gap-2">
                             <Key className="w-4 h-4" />
-                            OpenRouter API Key
+                            <span className="leading-5">OpenRouter API Key</span>
                         </div>
                     </label>
                     <input
                         type="password"
                         value={apiKey}
                         onChange={(e) => setApiKey(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white"
+                        className="w-full min-h-[44px] p-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white"
                         placeholder="sk-or-..."
                         required
                         disabled={disabled}
@@ -67,16 +67,16 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
 
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-start gap-2">
                             <Bot className="w-4 h-4" />
-                            Model Name (OpenRouter ID)
+                            <span className="leading-5">Model Name (OpenRouter ID)</span>
                         </div>
                     </label>
                     <input
                         type="text"
                         value={model}
                         onChange={(e) => setModel(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white"
+                        className="w-full min-h-[44px] p-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white"
                         placeholder="e.g. anthropic/claude-3-opus"
                         required
                         disabled={disabled}
@@ -85,15 +85,15 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
 
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-start gap-2">
                             <User className="w-4 h-4" />
-                            System Prompt / Persona
+                            <span className="leading-5">System Prompt / Persona</span>
                         </div>
                     </label>
                     <select
                         value={selectedPersona}
                         onChange={(e) => setSelectedPersona(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white mb-2"
+                        className="w-full min-h-[44px] p-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white mb-2"
                         disabled={disabled}
                     >
                         {PREDEFINED_PERSONAS.map(p => (
@@ -105,7 +105,7 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                         <textarea
                             value={customSystemPrompt}
                             onChange={(e) => setCustomSystemPrompt(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white h-24 text-sm font-mono"
+                            className="w-full p-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white h-28 text-sm font-mono"
                             placeholder="Enter your custom system prompt here. E.g., 'You are a wise 800-year-old elf...'"
                             required
                             disabled={disabled}
@@ -116,7 +116,7 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Inventories</label>
                     <div className="space-y-2">
-                        <label className="flex items-center gap-2 text-gray-900">
+                        <label className="flex items-start gap-2 text-gray-900 min-h-[44px] py-1">
                             <input
                                 type="checkbox"
                                 checked={inventories.includes('bigfive')}
@@ -125,11 +125,11 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                                     else setInventories(inventories.filter(i => i !== 'bigfive'));
                                 }}
                                 disabled={disabled}
-                                className="rounded text-blue-600 focus:ring-blue-500"
+                                className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 mt-1"
                             />
-                            <span>Big Five (IPIP-NEO-120)</span>
+                            <span className="leading-5">Big Five (IPIP-NEO-120)</span>
                         </label>
-                        <label className="flex items-center gap-2 text-gray-900">
+                        <label className="flex items-start gap-2 text-gray-900 min-h-[44px] py-1">
                             <input
                                 type="checkbox"
                                 checked={inventories.includes('mbti')}
@@ -138,11 +138,11 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                                     else setInventories(inventories.filter(i => i !== 'mbti'));
                                 }}
                                 disabled={disabled}
-                                className="rounded text-blue-600 focus:ring-blue-500"
+                                className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 mt-1"
                             />
-                            <span>MBTI (OEJTS 1.2)</span>
+                            <span className="leading-5">MBTI (OEJTS 1.2)</span>
                         </label>
-                        <label className="flex items-center gap-2 text-gray-900">
+                        <label className="flex items-start gap-2 text-gray-900 min-h-[44px] py-1">
                             <input
                                 type="checkbox"
                                 checked={inventories.includes('disc')}
@@ -151,11 +151,11 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                                     else setInventories(inventories.filter(i => i !== 'disc'));
                                 }}
                                 disabled={disabled}
-                                className="rounded text-blue-600 focus:ring-blue-500"
+                                className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 mt-1"
                             />
-                            <span>DISC Assessment</span>
+                            <span className="leading-5">DISC Assessment</span>
                         </label>
-                        <label className="flex items-center gap-2 text-gray-900">
+                        <label className="flex items-start gap-2 text-gray-900 min-h-[44px] py-1">
                             <input
                                 type="checkbox"
                                 checked={inventories.includes('darktriad')}
@@ -164,9 +164,9 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                                     else setInventories(inventories.filter(i => i !== 'darktriad'));
                                 }}
                                 disabled={disabled}
-                                className="rounded text-blue-600 focus:ring-blue-500"
+                                className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 mt-1"
                             />
-                            <span>Dark Triad</span>
+                            <span className="leading-5">Dark Triad</span>
                         </label>
                     </div>
                 </div>
@@ -174,7 +174,7 @@ export function ConfigForm({ onStart, disabled }: ConfigFormProps) {
                 <button
                     type="submit"
                     disabled={disabled || !apiKey || !model}
-                    className={`w-full flex items-center justify-center gap-2 py-2 px-4 rounded text-white font-medium transition-colors
+                    className={`w-full min-h-[44px] flex items-center justify-center gap-2 py-2.5 px-4 rounded text-white font-medium transition-colors
             ${disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
                 >
                     <Play className="w-4 h-4" />

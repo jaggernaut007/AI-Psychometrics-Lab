@@ -48,14 +48,14 @@ export default async function RunDetailPage({ params }: PageProps) {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
                 <div className="mb-8 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <Link href="/runs" className="text-indigo-600 hover:text-indigo-800 font-medium">
-                        ← Back to Recent Runs
+                    <Link href="/runs" className="min-h-[44px] inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium">
+                        {'<- '}Back to Recent Runs
                     </Link>
-                    <div className="text-sm text-gray-500">
-                        Run ID: {run.id.slice(0, 8)}... • {new Date(run.created_at).toLocaleString()}
+                    <div className="text-xs sm:text-sm text-gray-500 break-all">
+                        Run ID: {run.id} | {new Date(run.created_at).toLocaleString()}
                     </div>
                 </div>
 
@@ -74,3 +74,5 @@ export default async function RunDetailPage({ params }: PageProps) {
         </div>
     );
 }
+
+

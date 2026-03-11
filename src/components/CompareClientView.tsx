@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { ComparisonChart } from '@/components/ComparisonChart';
@@ -6,7 +6,7 @@ import { MbtiCell } from '@/components/MbtiCell';
 import { TraitCell } from '@/components/TraitCell';
 import { MetricBarChart } from '@/components/MetricBarChart';
 import { BIG_FIVE_DEFINITIONS, DISC_DEFINITIONS, DARK_TRIAD_DEFINITIONS } from '@/lib/psychometrics/definitions';
-import { ArrowLeft, ChevronDown, ChevronUp, BarChart3, X } from 'lucide-react';
+import { ArrowLeft, BarChart3, ChevronDown, ChevronUp, X } from 'lucide-react';
 import Link from 'next/link';
 
 interface CompareClientViewProps {
@@ -22,105 +22,141 @@ interface CompareClientViewProps {
     }>;
 }
 
+type BigFiveKey = 'O' | 'C' | 'E' | 'A' | 'N';
+type DiscKey = 'D' | 'I' | 'S' | 'C';
+type DarkTriadKey = 'Machiavellianism' | 'Narcissism' | 'Psychopathy';
+type MetricKey = BigFiveKey | DiscKey | DarkTriadKey;
+
+const BIG_FIVE_KEYS: BigFiveKey[] = ['O', 'C', 'E', 'A', 'N'];
+const DISC_KEYS: DiscKey[] = ['D', 'I', 'S', 'C'];
+const DARK_TRIAD_KEYS: DarkTriadKey[] = ['Machiavellianism', 'Narcissism', 'Psychopathy'];
+
 const CHART_COLORS = [
-    'rgba(255, 99, 132, 0.5)',   // Red
-    'rgba(54, 162, 235, 0.5)',   // Blue
-    'rgba(255, 206, 86, 0.5)',   // Yellow
-    'rgba(75, 192, 192, 0.5)',   // Teal
-    'rgba(153, 102, 255, 0.5)',  // Purple
-    'rgba(255, 159, 64, 0.5)',   // Orange
+    'rgba(255, 99, 132, 0.5)',
+    'rgba(54, 162, 235, 0.5)',
+    'rgba(255, 206, 86, 0.5)',
+    'rgba(75, 192, 192, 0.5)',
+    'rgba(153, 102, 255, 0.5)',
+    'rgba(255, 159, 64, 0.5)',
+];
+
+const metricSections: Array<{ title: string; keys: MetricKey[] }> = [
+    { title: 'Big Five (0-120)', keys: BIG_FIVE_KEYS },
+    { title: 'DISC Assessment', keys: DISC_KEYS },
+    { title: 'Dark Triad (0-100)', keys: DARK_TRIAD_KEYS },
 ];
 
 export function CompareClientView({ comparisonModels }: CompareClientViewProps) {
-    const [selectedMetrics, setSelectedMetrics] = useState<string[]>([]);
+    const [selectedMetrics, setSelectedMetrics] = useState<MetricKey[]>([]);
+    const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
 
-    const toggleMetric = (metricKey: string) => {
-        setSelectedMetrics(prev =>
-            prev.includes(metricKey)
-                ? prev.filter(k => k !== metricKey)
-                : [...prev, metricKey]
-        );
+    const toggleMetric = (metricKey: MetricKey) => {
+        setSelectedMetrics((prev) => {
+            const next = prev.includes(metricKey)
+                ? prev.filter((k) => k !== metricKey)
+                : [...prev, metricKey];
+            if (next.length === 0) {
+                setIsMobileSheetOpen(false);
+            }
+            return next;
+        });
     };
 
-    // Helper to get data for a specific metric key
-    const getMetricData = (key: string) => {
-        // Check Big Five
-        if (['O', 'C', 'E', 'A', 'N'].includes(key)) {
+    const getMetricData = (key: MetricKey) => {
+        if (BIG_FIVE_KEYS.includes(key as BigFiveKey)) {
+            const typedKey = key as BigFiveKey;
             return {
-                name: BIG_FIVE_DEFINITIONS[key].title,
+                name: BIG_FIVE_DEFINITIONS[typedKey].title,
                 maxValue: 120,
                 models: comparisonModels.map((m, i) => ({
                     id: m.id,
                     name: m.name,
                     persona: m.persona,
-                    value: m.scores[key] || 0,
-                    color: CHART_COLORS[i % CHART_COLORS.length]
-                }))
+                    value: m.scores[typedKey] || 0,
+                    color: CHART_COLORS[i % CHART_COLORS.length],
+                })),
             };
         }
-        // Check DISC
-        if (['D', 'I', 'S', 'C'].includes(key)) {
+
+        if (DISC_KEYS.includes(key as DiscKey)) {
+            const typedKey = key as DiscKey;
             return {
-                name: `DISC - ${DISC_DEFINITIONS[key].title}`,
+                name: `DISC - ${DISC_DEFINITIONS[typedKey].title}`,
                 maxValue: 100,
                 models: comparisonModels.map((m, i) => ({
                     id: m.id,
                     name: m.name,
                     persona: m.persona,
-                    value: m.disc[key] || 0,
-                    color: CHART_COLORS[i % CHART_COLORS.length]
-                }))
+                    value: m.disc[typedKey] || 0,
+                    color: CHART_COLORS[i % CHART_COLORS.length],
+                })),
             };
         }
-        // Check Dark Triad
-        if (['Machiavellianism', 'Narcissism', 'Psychopathy'].includes(key)) {
-            return {
-                name: DARK_TRIAD_DEFINITIONS[key].title,
-                maxValue: 100,
-                models: comparisonModels.map((m, i) => ({
-                    id: m.id,
-                    name: m.name,
-                    persona: m.persona,
-                    value: m.darkTriad[key] || 0,
-                    color: CHART_COLORS[i % CHART_COLORS.length]
-                }))
-            };
-        }
-        return null;
+
+        const typedKey = key as DarkTriadKey;
+        return {
+            name: DARK_TRIAD_DEFINITIONS[typedKey].title,
+            maxValue: 100,
+            models: comparisonModels.map((m, i) => ({
+                id: m.id,
+                name: m.name,
+                persona: m.persona,
+                value: m.darkTriad[typedKey] || 0,
+                color: CHART_COLORS[i % CHART_COLORS.length],
+            })),
+        };
     };
 
+    const getMetricLabel = (key: MetricKey) => {
+        if (BIG_FIVE_KEYS.includes(key as BigFiveKey)) {
+            return BIG_FIVE_DEFINITIONS[key as BigFiveKey].title;
+        }
+        if (DISC_KEYS.includes(key as DiscKey)) {
+            return `DISC - ${DISC_DEFINITIONS[key as DiscKey].title}`;
+        }
+        return DARK_TRIAD_DEFINITIONS[key as DarkTriadKey].title;
+    };
+
+    const getMetricValue = (model: CompareClientViewProps['comparisonModels'][number], key: MetricKey) => {
+        if (BIG_FIVE_KEYS.includes(key as BigFiveKey)) {
+            return model.scores[key as BigFiveKey] || 0;
+        }
+        if (DISC_KEYS.includes(key as DiscKey)) {
+            return model.disc[key as DiscKey] || 0;
+        }
+        return model.darkTriad[key as DarkTriadKey] || 0;
+    };
+
+    const getMetricPrecision = (key: MetricKey) => (DISC_KEYS.includes(key as DiscKey) ? 1 : 0);
+
     return (
-        <div className={`min-h-screen bg-gray-50 transition-all duration-300 ${selectedMetrics.length > 0 ? 'pb-[450px]' : 'pb-24'}`}>
-            {/* Header */}
+        <div className={`min-h-screen bg-gray-50 transition-all duration-300 ${selectedMetrics.length > 0 ? 'pb-28 md:pb-[450px]' : 'pb-24'}`}>
             <div className="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-sm">
-                <div className="max-w-[95%] mx-auto px-4 py-4 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                <div className="max-w-[95%] mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                         <Link href="/explorer" className="p-2 hover:bg-gray-100 rounded-full text-gray-500 transition">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
-                        <div>
-                            <h1 className="text-xl font-bold text-gray-900">Psychometric Comparison</h1>
-                            <p className="text-sm text-gray-500 hidden sm:block">Comparing {comparisonModels.length} profiles</p>
+                        <div className="min-w-0">
+                            <h1 className="text-lg sm:text-xl font-bold text-gray-900">Psychometric Comparison</h1>
+                            <p className="text-xs sm:text-sm text-gray-500">Comparing {comparisonModels.length} profiles</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="max-w-[95%] mx-auto px-4 mt-8">
-                {/* Visualizations Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    {/* Radar Chart */}
-                    <div className="md:col-span-1 bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex flex-col">
-                        <div className="flex-grow min-h-[400px]">
+            <div className="max-w-[95%] mx-auto px-4 mt-6 sm:mt-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
+                    <div className="lg:col-span-1 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200 flex flex-col">
+                        <div className="flex-grow min-h-[300px] sm:min-h-[380px]">
                             <ComparisonChart models={comparisonModels} />
                         </div>
                     </div>
 
-                    {/* Key Stats / Summary */}
-                    <div className="md:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div className="lg:col-span-2 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                         <h3 className="text-lg font-bold text-gray-800 mb-4">Profile Overview</h3>
                         <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
+                            <table className="w-full text-left border-collapse min-w-[620px]">
                                 <thead>
                                     <tr className="border-b border-gray-100">
                                         <th className="py-3 px-4 font-medium text-gray-500 w-1/4">Model / Persona</th>
@@ -133,18 +169,18 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                                     {comparisonModels.map((m, i) => {
                                         const entries = Object.entries(m.scores);
                                         const maxTrait = entries.length > 0
-                                            ? entries.reduce((a, b) => a[1] > b[1] ? a : b)
+                                            ? entries.reduce((a, b) => (a[1] > b[1] ? a : b))
                                             : ['N/A', 0] as [string, number];
-                                        const traitName = BIG_FIVE_DEFINITIONS[maxTrait[0]]?.title || maxTrait[0];
+                                        const traitName = BIG_FIVE_DEFINITIONS[maxTrait[0] as BigFiveKey]?.title || maxTrait[0];
                                         const color = CHART_COLORS[i % CHART_COLORS.length].replace('0.5', '1');
 
                                         return (
                                             <tr key={m.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50">
                                                 <td className="py-3 px-4">
                                                     <div className="flex items-center gap-2">
-                                                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color }}></div>
-                                                        <div>
-                                                            <div className="font-bold text-gray-900">{m.name}</div>
+                                                        <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: color }}></div>
+                                                        <div className="min-w-0">
+                                                            <div className="font-bold text-gray-900 break-words">{m.name}</div>
                                                             <div className="text-xs text-indigo-600 bg-indigo-50 inline-block px-1.5 py-0.5 rounded mt-0.5">
                                                                 {m.persona}
                                                             </div>
@@ -167,8 +203,7 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                     </div>
                 </div>
 
-                {/* Detailed Comparison Table */}
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-12">
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-6 hidden md:block">
                     <div className="p-6 border-b border-gray-100 bg-indigo-50/30 flex justify-between items-center">
                         <div>
                             <h3 className="text-lg font-bold text-gray-800">Detailed Metric Comparison</h3>
@@ -193,9 +228,8 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100">
-                                {/* BIG FIVE */}
                                 <tr className="bg-gray-50/50"><td colSpan={comparisonModels.length + 1} className="py-2 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Big Five (0-120)</td></tr>
-                                {['O', 'C', 'E', 'A', 'N'].map(t => {
+                                {BIG_FIVE_KEYS.map((t) => {
                                     const isSelected = selectedMetrics.includes(t);
                                     return (
                                         <tr
@@ -211,18 +245,15 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                                             </td>
                                             {comparisonModels.map((m, i) => (
                                                 <td key={m.id} className={`py-3 px-6 ${i > 0 ? 'border-l border-gray-100 group-hover:border-gray-200' : ''}`}>
-                                                    <div className="flex items-center justify-center gap-2">
-                                                        <span className="font-mono font-bold text-gray-800">{m.scores[t]?.toFixed(0)}</span>
-                                                    </div>
+                                                    <span className="font-mono font-bold text-gray-800">{m.scores[t]?.toFixed(0)}</span>
                                                 </td>
                                             ))}
                                         </tr>
                                     );
                                 })}
 
-                                {/* DISC */}
                                 <tr className="bg-gray-50/50"><td colSpan={comparisonModels.length + 1} className="py-2 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">DISC Assessment</td></tr>
-                                {['D', 'I', 'S', 'C'].map(t => {
+                                {DISC_KEYS.map((t) => {
                                     const isSelected = selectedMetrics.includes(t);
                                     return (
                                         <tr
@@ -245,9 +276,8 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                                     );
                                 })}
 
-                                {/* DARK TRIAD */}
                                 <tr className="bg-gray-50/50"><td colSpan={comparisonModels.length + 1} className="py-2 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Dark Triad (0-100)</td></tr>
-                                {['Machiavellianism', 'Narcissism', 'Psychopathy'].map(t => {
+                                {DARK_TRIAD_KEYS.map((t) => {
                                     const isSelected = selectedMetrics.includes(t);
                                     return (
                                         <tr
@@ -263,8 +293,7 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                                             </td>
                                             {comparisonModels.map((m, i) => {
                                                 const score = m.darkTriad[t] || 0;
-                                                let color = 'text-gray-800';
-                                                if (score > 66) color = 'text-red-600 font-bold';
+                                                const color = score > 66 ? 'text-red-600 font-bold' : 'text-gray-800';
                                                 return (
                                                     <td key={m.id} className={`py-3 px-6 ${i > 0 ? 'border-l border-gray-100 group-hover:border-gray-200' : ''}`}>
                                                         <span className={`font-mono ${color}`}>{score.toFixed(0)}</span>
@@ -279,9 +308,109 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                     </div>
                 </div>
 
-                {/* Selected Metrics Charts Panel */}
-                {selectedMetrics.length > 0 && (
-                    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] z-40 animate-in slide-in-from-bottom-10 duration-300">
+                <div className="md:hidden space-y-4 mb-8">
+                    <div className="bg-white rounded-xl border border-gray-200 p-4">
+                        <h3 className="text-base font-bold text-gray-800">Detailed Metric Comparison</h3>
+                        <p className="text-xs text-gray-500 mt-1">Tap any metric to pin a chart in the compare panel.</p>
+                    </div>
+                    {metricSections.map((section, idx) => (
+                        <details key={section.title} className="bg-white border border-gray-200 rounded-xl overflow-hidden" open={idx === 0}>
+                            <summary className="px-4 py-3 text-sm font-semibold text-gray-800 bg-gray-50 cursor-pointer">
+                                {section.title}
+                            </summary>
+                            <div className="p-3 space-y-3">
+                                {section.keys.map((metricKey) => {
+                                    const isSelected = selectedMetrics.includes(metricKey);
+                                    return (
+                                        <div key={metricKey} className={`rounded-lg border ${isSelected ? 'border-indigo-300 bg-indigo-50' : 'border-gray-200 bg-white'}`}>
+                                            <button
+                                                type="button"
+                                                onClick={() => toggleMetric(metricKey)}
+                                                className="w-full min-h-[44px] px-3 py-2 flex items-center justify-between text-left"
+                                            >
+                                                <span className={`text-sm font-medium ${isSelected ? 'text-indigo-900' : 'text-gray-800'}`}>
+                                                    {getMetricLabel(metricKey)}
+                                                </span>
+                                                {isSelected ? <BarChart3 className="w-4 h-4 text-indigo-600" /> : <span className="text-xs text-gray-400">Tap to compare</span>}
+                                            </button>
+                                            <div className="px-3 pb-3 space-y-2">
+                                                {comparisonModels.map((model) => (
+                                                    <div key={`mobile-metric-${metricKey}-${model.id}`} className="flex items-center justify-between text-xs border border-gray-100 rounded p-2 bg-gray-50">
+                                                        <div className="min-w-0">
+                                                            <div className="font-medium text-gray-900 truncate">{model.name}</div>
+                                                            {model.persona !== 'Base Model' && <div className="text-[10px] text-gray-500 truncate">{model.persona}</div>}
+                                                        </div>
+                                                        <div className="font-mono font-semibold text-gray-800 ml-3">
+                                                            {getMetricValue(model, metricKey).toFixed(getMetricPrecision(metricKey))}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </details>
+                    ))}
+                </div>
+            </div>
+
+            {selectedMetrics.length > 0 && (
+                <>
+                    {isMobileSheetOpen && (
+                        <button
+                            type="button"
+                            className="fixed inset-0 bg-black/25 z-30 md:hidden"
+                            onClick={() => setIsMobileSheetOpen(false)}
+                            aria-label="Close comparison charts"
+                        />
+                    )}
+
+                    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40">
+                        <div className="bg-white border-t border-gray-200 shadow-[0_-6px_22px_rgba(0,0,0,0.15)] rounded-t-2xl">
+                            <div className="px-4 py-3 flex items-center justify-between">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsMobileSheetOpen((prev) => !prev)}
+                                    className="min-h-[44px] inline-flex items-center gap-2 text-sm font-semibold text-gray-900"
+                                >
+                                    <BarChart3 className="w-4 h-4 text-indigo-600" />
+                                    {selectedMetrics.length} pinned metric{selectedMetrics.length === 1 ? '' : 's'}
+                                    {isMobileSheetOpen ? <ChevronDown className="w-4 h-4 text-gray-500" /> : <ChevronUp className="w-4 h-4 text-gray-500" />}
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setSelectedMetrics([]);
+                                        setIsMobileSheetOpen(false);
+                                    }}
+                                    className="min-h-[44px] px-3 text-xs font-semibold text-gray-500"
+                                >
+                                    Clear all
+                                </button>
+                            </div>
+                            {isMobileSheetOpen && (
+                                <div className="h-[62vh] border-t border-gray-100 p-4 overflow-y-auto">
+                                    <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2">
+                                        {selectedMetrics.map((metricKey) => {
+                                            const data = getMetricData(metricKey);
+                                            return (
+                                                <div key={`mobile-chart-${metricKey}`} className="w-[280px] h-[300px] flex-shrink-0 snap-start rounded-xl border border-gray-200 bg-gray-50 p-2">
+                                                    <MetricBarChart
+                                                        metricName={data.name}
+                                                        models={data.models}
+                                                        maxValue={data.maxValue}
+                                                    />
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="hidden md:block fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] z-40 animate-in slide-in-from-bottom-10 duration-300">
                         <div className="max-w-[95%] mx-auto px-4">
                             <div className="flex items-center justify-between py-3 border-b border-gray-100">
                                 <div className="flex items-center gap-2">
@@ -289,7 +418,10 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                                     <h3 className="font-bold text-gray-900">Custom Comparison ({selectedMetrics.length})</h3>
                                 </div>
                                 <button
-                                    onClick={() => setSelectedMetrics([])}
+                                    onClick={() => {
+                                        setSelectedMetrics([]);
+                                        setIsMobileSheetOpen(false);
+                                    }}
                                     className="p-1 hover:bg-gray-100 rounded-full text-gray-500"
                                 >
                                     <X className="w-5 h-5" />
@@ -297,9 +429,8 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                             </div>
                             <div className="py-6 overflow-x-auto">
                                 <div className="flex gap-6 pb-2 min-w-min">
-                                    {selectedMetrics.map(metricKey => {
+                                    {selectedMetrics.map((metricKey) => {
                                         const data = getMetricData(metricKey);
-                                        if (!data) return null;
                                         return (
                                             <div key={metricKey} className="w-[350px] flex-shrink-0 h-[300px]">
                                                 <MetricBarChart
@@ -314,8 +445,8 @@ export function CompareClientView({ comparisonModels }: CompareClientViewProps) 
                             </div>
                         </div>
                     </div>
-                )}
-            </div>
+                </>
+            )}
         </div>
     );
 }

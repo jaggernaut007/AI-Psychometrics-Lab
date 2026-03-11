@@ -8,6 +8,23 @@ interface PageProps {
     searchParams: Promise<{ ids?: string }>;
 }
 
+interface AggregatedModelStats {
+    id: string;
+    modelName: string;
+    persona: string;
+    count: number;
+    bigFive: Record<'N' | 'E' | 'O' | 'A' | 'C', number>;
+    disc: Record<'D' | 'I' | 'S' | 'C', number>;
+    darkTriad: Record<'Machiavellianism' | 'Narcissism' | 'Psychopathy', number>;
+    darkTriadCount: number;
+    mbtiDirectCounts: Record<string, number>;
+    mbtiDerivedCounts: Record<string, number>;
+}
+
+const BIG_FIVE_KEYS = ['N', 'E', 'O', 'A', 'C'] as const;
+const DISC_KEYS = ['D', 'I', 'S', 'C'] as const;
+const DARK_TRIAD_KEYS = ['Machiavellianism', 'Narcissism', 'Psychopathy'] as const;
+
 
 export const revalidate = 60;
 
@@ -19,7 +36,7 @@ export default async function ComparePage({ searchParams }: PageProps) {
             <div className="min-h-screen flex items-center justify-center p-4">
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-gray-800">No models selected</h2>
-                    <Link href="/explorer" className="text-blue-600 hover:underline mt-2 inline-block">
+                    <Link href="/explorer" className="text-blue-600 hover:underline mt-2 inline-flex items-center min-h-[44px] px-1">
                         Go back to Explorer
                     </Link>
                 </div>
@@ -46,7 +63,7 @@ export default async function ComparePage({ searchParams }: PageProps) {
     }
 
     // 2. Aggregate Data
-    const modelStats: Record<string, any> = {};
+    const modelStats: Record<string, AggregatedModelStats> = {};
 
     runs.forEach(run => {
         const name = run.model_name;
@@ -77,7 +94,7 @@ export default async function ComparePage({ searchParams }: PageProps) {
         // Big Five
         const bigFiveScores = run.results?.bigfive?.traitScores;
         if (bigFiveScores) {
-            ['N', 'E', 'O', 'A', 'C'].forEach(k => {
+            BIG_FIVE_KEYS.forEach((k) => {
                 stats.bigFive[k] += (bigFiveScores[k] || 0);
             });
         }
@@ -85,7 +102,7 @@ export default async function ComparePage({ searchParams }: PageProps) {
         // DISC
         const discScores = run.results?.disc?.traitScores;
         if (discScores) {
-            ['D', 'I', 'S', 'C'].forEach(k => {
+            DISC_KEYS.forEach((k) => {
                 stats.disc[k] += (discScores[k] || 0);
             });
         }
@@ -94,7 +111,7 @@ export default async function ComparePage({ searchParams }: PageProps) {
         const dtScores = run.results?.darktriad?.traitScores;
         if (dtScores) {
             stats.darkTriadCount++;
-            ['Machiavellianism', 'Narcissism', 'Psychopathy'].forEach(k => {
+            DARK_TRIAD_KEYS.forEach((k) => {
                 stats.darkTriad[k] += (dtScores[k] || 0);
             });
         }
@@ -110,21 +127,21 @@ export default async function ComparePage({ searchParams }: PageProps) {
     });
 
     // 3. Finalize Averages
-    const comparisonModels = Object.values(modelStats).map((stats: any) => {
+    const comparisonModels = Object.values(modelStats).map((stats) => {
         const avgScores: Record<string, number> = {};
-        ['N', 'E', 'O', 'A', 'C'].forEach(key => {
+        BIG_FIVE_KEYS.forEach((key) => {
             // Fix: Ensure we don't divide by zero if count is somehow 0 (unlikely here)
             avgScores[key] = stats.count ? stats.bigFive[key] / stats.count : 0;
         });
 
         const avgDisc: Record<string, number> = {};
-        ['D', 'I', 'S', 'C'].forEach(key => {
+        DISC_KEYS.forEach((key) => {
             avgDisc[key] = stats.count ? stats.disc[key] / stats.count : 0;
         });
 
         const avgDarkTriad: Record<string, number> = {};
         if (stats.darkTriadCount > 0) {
-            ['Machiavellianism', 'Narcissism', 'Psychopathy'].forEach(key => {
+            DARK_TRIAD_KEYS.forEach((key) => {
                 avgDarkTriad[key] = stats.darkTriad[key] / stats.darkTriadCount;
             });
         }
@@ -135,8 +152,8 @@ export default async function ComparePage({ searchParams }: PageProps) {
         const hasDirect = Object.keys(stats.mbtiDirectCounts).length > 0;
         const countsToUse = hasDirect ? stats.mbtiDirectCounts : stats.mbtiDerivedCounts;
         Object.entries(countsToUse).forEach(([type, count]) => {
-            if ((count as number) > maxCount) {
-                maxCount = count as number;
+            if (count > maxCount) {
+                maxCount = count;
                 topMbti = type;
             }
         });

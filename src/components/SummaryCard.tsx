@@ -308,7 +308,7 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
                 {/* Footer - Styled like Header */}
                 <div className="flex items-center justify-between border-t border-gray-800 py-2 mt-auto">
                     <div className="text-[10px] tracking-widest uppercase font-medium text-gray-600">
-                        {dateString}{sourceLabel && <span className="normal-case tracking-normal opacity-75"> • {sourceLabel}</span>}
+                        {dateString}{sourceLabel && <span className="normal-case tracking-normal opacity-75"> | {sourceLabel}</span>}
                     </div>
                     <div className="text-[10px] tracking-wider uppercase font-bold text-[#60a5fa]">
                         Made by: AI Psychometrics Lab
@@ -320,3 +320,5 @@ export const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(({ profi
 });
 
 SummaryCard.displayName = 'SummaryCard';
+
+

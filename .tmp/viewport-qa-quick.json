@@ -1,0 +1,75 @@
+{
+  "baseUrl": "http://127.0.0.1:3000",
+  "checkedAt": "2026-02-07T21:34:35.087Z",
+  "routes": [
+    "/",
+    "/about",
+    "/explorer",
+    "/compare",
+    "/runs"
+  ],
+  "viewports": [
+    {
+      "name": "320x568",
+      "width": 320,
+      "height": 568
+    },
+    {
+      "name": "568x320",
+      "width": 568,
+      "height": 320
+    },
+    {
+      "name": "375x812",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "name": "812x375",
+      "width": 812,
+      "height": 375
+    },
+    {
+      "name": "390x844",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "844x390",
+      "width": 844,
+      "height": 390
+    },
+    {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "name": "834x1194",
+      "width": 834,
+      "height": 1194
+    },
+    {
+      "name": "1194x834",
+      "width": 1194,
+      "height": 834
+    },
+    {
+      "name": "1024x1366",
+      "width": 1024,
+      "height": 1366
+    },
+    {
+      "name": "1280x800",
+      "width": 1280,
+      "height": 800
+    }
+  ],
+  "issueCount": 0,
+  "issues": []
+}

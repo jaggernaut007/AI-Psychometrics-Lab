@@ -2,10 +2,21 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { fetchOpenRouterResponse } from '../lib/psychometrics/client';
 import { BIG_FIVE_ITEMS, calculateBigFiveScores } from '../lib/psychometrics/inventories/bigfive';
 import { MBTI_ITEMS, calculateMBTIScores, deriveMBTIFromBigFive } from '../lib/psychometrics/inventories/mbti';
-import { DISC_ITEMS, calculateDISCScores } from '../lib/psychometrics/inventories/disc';
+import { DISC_ITEMS, calculateDISCScores, type DISCItem } from '../lib/psychometrics/inventories/disc';
 import { DARK_TRIAD_ITEMS, calculateDarkTriadScores } from '../lib/psychometrics/inventories/darktriad';
 import { InventoryItem, ModelProfile, LogEntry } from '../lib/psychometrics/types';
 
+
+function isDISCItem(item: InventoryItem): item is DISCItem {
+    return Array.isArray((item as DISCItem).words);
+}
+
+function getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+        return error.message;
+    }
+    return String(error);
+}
 
 
 export function usePsychometrics() {
@@ -111,17 +122,16 @@ export function usePsychometrics() {
                             // For Big Five (Likert)
                             let prompt = "";
                             if (item.type === 'likert_5') {
-                                if ((item as any).dimension) {
+                                if (item.dimension && item.leftText && item.rightText) {
                                     // MBTI Item
-                                    const mbtiItem = item as any;
                                     prompt = `Instruction: Which description fits you better?
-1: ${mbtiItem.leftText}
-5: ${mbtiItem.rightText}
+1: ${item.leftText}
+5: ${item.rightText}
 
 Rate on a scale of 1 to 5.
-1 = Describes me perfectly (${mbtiItem.leftText})
+1 = Describes me perfectly (${item.leftText})
 3 = Neutral / In between
-5 = Describes me perfectly (${mbtiItem.rightText})
+5 = Describes me perfectly (${item.rightText})
 
 Task: Provide ONLY the number (1-5) that best fits. Minimal reasoning.`;
                                 } else {
@@ -132,10 +142,9 @@ Statement: "${item.text}"
 
 Task: Provide ONLY the number (1-5). If abstract, answer based on general tendency. Minimal reasoning.`;
                                 }
-                            } else if (item.type === 'choice_binary') {
+                            } else if (item.type === 'choice_binary' && isDISCItem(item)) {
                                 // DISC Item (Most/Least)
-                                const discItem = item as any;
-                                const words = discItem.words.map((w: any, i: number) => `${i + 1}. ${w.text}`).join('\n');
+                                const words = item.words.map((word, i) => `${i + 1}. ${word.text}`).join('\n');
                                 prompt = `Instruction: Look at the following list of words:
 ${words}
 
@@ -164,7 +173,11 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Mini
                                         // Encode as Most * 10 + Least
                                         const encoded = most * 10 + least;
                                         itemScores.push(encoded);
-                                        addLog(`[${item.id}] DISC: Most=${most + 1} (${(item as any).words[most].quadrant}), Least=${least + 1} (${(item as any).words[least].quadrant})`, 'success');
+                                        if (isDISCItem(item) && item.words[most] && item.words[least]) {
+                                            addLog(`[${item.id}] DISC: Most=${most + 1} (${item.words[most].quadrant}), Least=${least + 1} (${item.words[least].quadrant})`, 'success');
+                                        } else {
+                                            addLog(`[${item.id}] DISC: Most=${most + 1}, Least=${least + 1}`, 'success');
+                                        }
                                     } else {
                                         addLog(`Failed to parse DISC response: "${response}"`, 'error');
                                         itemScores.push(0); // Default/Error
@@ -203,8 +216,8 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Mini
                                     }
                                 }
                             }
-                        } catch (err) {
-                            addLog(`Error fetching item "${item.text}": ${err}`, 'error');
+                        } catch (err: unknown) {
+                            addLog(`Error fetching item "${item.text}": ${getErrorMessage(err)}`, 'error');
                             itemScores.push(3);
                         }
                     }
@@ -245,13 +258,13 @@ Constraint: Respond with two numbers separated by a comma. Example: "1, 4". Mini
             setResults(profile);
             addLog("Test completed successfully!", 'success');
 
-        } catch (error: any) {
-            addLog(`Test failed: ${error.message}`, 'error');
+        } catch (error: unknown) {
+            addLog(`Test failed: ${getErrorMessage(error)}`, 'error');
         } finally {
             flushLogs();
             setIsRunning(false);
         }
-    }, []);
+    }, [addLog, flushLogs]);
 
     return { isRunning, progress, totalItems, logs, results, runTest };
 }

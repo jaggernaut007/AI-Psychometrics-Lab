@@ -1,50 +1,83 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export const TraitCell = ({ title, def, range }: { title: string, def?: any, range: string }) => {
-    const [isHovered, setIsHovered] = useState(false);
+interface TraitDefinition {
+    title?: string;
+    description: string;
+    high: string;
+    medium?: string;
+    low: string;
+}
+
+export const TraitCell = ({ title, def, range }: { title: string, def?: TraitDefinition, range: string }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [supportsHover, setSupportsHover] = useState(true);
     const [position, setPosition] = useState({ top: 0, left: 0 });
-    const [isFlipped, setIsFlipped] = useState(false);
     const triggerRef = useRef<HTMLDivElement>(null);
+    const tooltipRef = useRef<HTMLDivElement>(null);
 
-    // Only run on client to avoid hydration mismatch with portal
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const handleMouseEnter = () => {
+    const updatePosition = useCallback(() => {
         if (triggerRef.current) {
             const rect = triggerRef.current.getBoundingClientRect();
+            const tooltipWidth = 288;
+            const tooltipHeight = 300;
+            const margin = 8;
 
-            // Check if close to bottom
-            const spaceBelow = window.innerHeight - rect.bottom;
-            const shouldFlip = spaceBelow < 300; // approximate tooltip height + buffer
-
-            setIsFlipped(shouldFlip);
+            const left = Math.max(
+                margin,
+                Math.min(rect.left, window.innerWidth - tooltipWidth - margin)
+            );
+            const showAbove = rect.bottom + tooltipHeight + margin > window.innerHeight;
             setPosition({
-                top: shouldFlip ? rect.top : rect.bottom,
-                left: rect.left
+                top: showAbove ? Math.max(margin, rect.top - tooltipHeight - margin) : rect.bottom + margin,
+                left,
             });
-            setIsHovered(true);
         }
-    };
+    }, []);
 
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const hoverQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const apply = () => setSupportsHover(hoverQuery.matches);
+        apply();
+        hoverQuery.addEventListener('change', apply);
+        return () => hoverQuery.removeEventListener('change', apply);
+    }, []);
+
+    useEffect(() => {
+        if (!isOpen || typeof window === 'undefined') return;
+        updatePosition();
+        const onPointerDown = (event: PointerEvent) => {
+            const target = event.target as Node;
+            if (
+                triggerRef.current?.contains(target) ||
+                tooltipRef.current?.contains(target)
+            ) {
+                return;
+            }
+            setIsOpen(false);
+        };
+        window.addEventListener('pointerdown', onPointerDown);
+        window.addEventListener('resize', updatePosition);
+        window.addEventListener('scroll', updatePosition, true);
+        return () => {
+            window.removeEventListener('pointerdown', onPointerDown);
+            window.removeEventListener('resize', updatePosition);
+            window.removeEventListener('scroll', updatePosition, true);
+        };
+    }, [isOpen, updatePosition]);
 
     if (!def) return <span className="text-gray-700">{title}</span>;
 
-    const tooltip = isHovered && mounted ? createPortal(
+    const tooltip = isOpen && typeof window !== 'undefined' ? createPortal(
         <div
-            className="fixed z-[9999] w-72 p-4 bg-gray-900 text-white text-xs rounded shadow-2xl pointer-events-none border border-gray-700 animate-in fade-in zoom-in-95 duration-100"
+            ref={tooltipRef}
+            className="fixed z-[9999] w-72 max-w-[calc(100vw-16px)] p-4 bg-gray-900 text-white text-xs rounded shadow-2xl border border-gray-700 animate-in fade-in zoom-in-95 duration-100"
             style={{
                 top: position.top,
                 left: position.left,
-                transform: `translateY(${isFlipped ? '-100%' : '8px'})`
             }}
         >
             <div className="flex justify-between items-baseline mb-1">
@@ -66,8 +99,20 @@ export const TraitCell = ({ title, def, range }: { title: string, def?: any, ran
             <div
                 ref={triggerRef}
                 className="group flex items-center gap-1.5 cursor-help w-full"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => {
+                    if (!supportsHover) return;
+                    updatePosition();
+                    setIsOpen(true);
+                }}
+                onMouseLeave={() => {
+                    if (!supportsHover) return;
+                    setIsOpen(false);
+                }}
+                onClick={() => {
+                    if (supportsHover) return;
+                    updatePosition();
+                    setIsOpen((prev) => !prev);
+                }}
             >
                 <span>{title}</span>
             </div>

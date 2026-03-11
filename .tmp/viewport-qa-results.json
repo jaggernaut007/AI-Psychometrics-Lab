@@ -1,0 +1,2140 @@
+{
+  "baseUrl": "http://127.0.0.1:3100",
+  "timestamp": "2026-02-07T21:05:34.074Z",
+  "routes": [
+    "/",
+    "/about",
+    "/explorer",
+    "/compare",
+    "/runs",
+    "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+    "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd"
+  ],
+  "totalChecks": 68,
+  "hardOverflowCount": 0,
+  "failureCount": 38,
+  "results": [
+    {
+      "route": "/",
+      "viewport": "phone-320x568-p",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 320,
+      "innerHeight": 568,
+      "docScrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "viewport": "phone-568x320-l",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 568,
+      "innerHeight": 320,
+      "docScrollWidth": 568,
+      "bodyScrollWidth": 568,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "viewport": "phone-375x812-p",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 375,
+      "innerHeight": 812,
+      "docScrollWidth": 375,
+      "bodyScrollWidth": 375,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "viewport": "phone-812x375-l",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 812,
+      "innerHeight": 375,
+      "docScrollWidth": 812,
+      "bodyScrollWidth": 812,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/",
+      "viewport": "phone-390x844-p",
+      "screenshot": "viewport-screens\\home__phone-390x844-p.png",
+      "url": "/",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "viewport": "phone-844x390-l",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 844,
+      "innerHeight": 390,
+      "docScrollWidth": 844,
+      "bodyScrollWidth": 844,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/",
+      "viewport": "tablet-768x1024-p",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 768,
+      "innerHeight": 1024,
+      "docScrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/",
+      "viewport": "tablet-1024x768-l",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/",
+      "viewport": "tablet-834x1194-p",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 834,
+      "innerHeight": 1194,
+      "docScrollWidth": 834,
+      "bodyScrollWidth": 834,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/",
+      "viewport": "tablet-1194x834-l",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 1194,
+      "innerHeight": 834,
+      "docScrollWidth": 1194,
+      "bodyScrollWidth": 1194,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/",
+      "viewport": "desktop-1024x1366",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 1024,
+      "innerHeight": 1366,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/",
+      "viewport": "desktop-1280x800",
+      "screenshot": null,
+      "url": "/",
+      "innerWidth": 1280,
+      "innerHeight": 800,
+      "docScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "phone-320x568-p",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 320,
+      "innerHeight": 568,
+      "docScrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "viewport": "phone-568x320-l",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 568,
+      "innerHeight": 320,
+      "docScrollWidth": 568,
+      "bodyScrollWidth": 568,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "viewport": "phone-375x812-p",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 375,
+      "innerHeight": 812,
+      "docScrollWidth": 375,
+      "bodyScrollWidth": 375,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "viewport": "phone-812x375-l",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 812,
+      "innerHeight": 375,
+      "docScrollWidth": 812,
+      "bodyScrollWidth": 812,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "phone-390x844-p",
+      "screenshot": "viewport-screens\\about__phone-390x844-p.png",
+      "url": "/about",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "viewport": "phone-844x390-l",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 844,
+      "innerHeight": 390,
+      "docScrollWidth": 844,
+      "bodyScrollWidth": 844,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "tablet-768x1024-p",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 768,
+      "innerHeight": 1024,
+      "docScrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "tablet-1024x768-l",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "tablet-834x1194-p",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 834,
+      "innerHeight": 1194,
+      "docScrollWidth": 834,
+      "bodyScrollWidth": 834,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "tablet-1194x834-l",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 1194,
+      "innerHeight": 834,
+      "docScrollWidth": 1194,
+      "bodyScrollWidth": 1194,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "desktop-1024x1366",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 1024,
+      "innerHeight": 1366,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/about",
+      "viewport": "desktop-1280x800",
+      "screenshot": null,
+      "url": "/about",
+      "innerWidth": 1280,
+      "innerHeight": 800,
+      "docScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/explorer",
+      "viewport": "phone-320x568-p",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 320,
+      "innerHeight": 568,
+      "docScrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 13,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 206.5,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "openai/gpt-5.2",
+          "width": 117.5,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "phone-568x320-l",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 568,
+      "innerHeight": 320,
+      "docScrollWidth": 568,
+      "bodyScrollWidth": 568,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 20,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 453.3,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "nvidia/nemotron-3-nano-30b-a3b",
+          "width": 269.2,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 136.9,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "anthropic/claude-opus-4.5",
+          "width": 213,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "openai/gpt-5.2",
+          "width": 117.5,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "phone-375x812-p",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 375,
+      "innerHeight": 812,
+      "docScrollWidth": 375,
+      "bodyScrollWidth": 375,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 14,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 261.1,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 136.9,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "openai/gpt-5.2",
+          "width": 117.5,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "phone-812x375-l",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 812,
+      "innerHeight": 375,
+      "docScrollWidth": 812,
+      "bodyScrollWidth": 812,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 19,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 346.4,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "nvidia/nemotron-3-nano-30b-a3b",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "anthropic/claude-opus-4.5",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "google/gemini-3-flash-preview",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "phone-390x844-p",
+      "screenshot": "viewport-screens\\explorer__phone-390x844-p.png",
+      "url": "/explorer",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 14,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 276,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 136.9,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-base font-bold text-gray-900 hover:text-indigo-600 break-words",
+          "text": "openai/gpt-5.2",
+          "width": 117.5,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700",
+          "text": "View runs",
+          "width": 85.6,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "phone-844x390-l",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 844,
+      "innerHeight": 390,
+      "docScrollWidth": 844,
+      "bodyScrollWidth": 844,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 19,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 378.3,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "nvidia/nemotron-3-nano-30b-a3b",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "anthropic/claude-opus-4.5",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "google/gemini-3-flash-preview",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "tablet-768x1024-p",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 768,
+      "innerHeight": 1024,
+      "docScrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 19,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 302.6,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "nvidia/nemotron-3-nano-30b-a3b",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "anthropic/claude-opus-4.5",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "google/gemini-3-flash-preview",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "tablet-1024x768-l",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 13,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 541.8,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 123.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 123.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "tablet-834x1194-p",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 834,
+      "innerHeight": 1194,
+      "docScrollWidth": 834,
+      "bodyScrollWidth": 834,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 19,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 368.3,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "nvidia/nemotron-3-nano-30b-a3b",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "anthropic/claude-opus-4.5",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "google/gemini-3-flash-preview",
+          "width": 120,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "tablet-1194x834-l",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 1194,
+      "innerHeight": 834,
+      "docScrollWidth": 1194,
+      "bodyScrollWidth": 1194,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 14,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 711.6,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 194.5,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "anthropic/claude-opus-4.5",
+          "width": 194.5,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 194.5,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "desktop-1024x1366",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 1024,
+      "innerHeight": 1366,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 13,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 541.8,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 123.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 123.6,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 59.2,
+          "height": 16,
+          "minDim": 16
+        }
+      ]
+    },
+    {
+      "route": "/explorer",
+      "viewport": "desktop-1280x800",
+      "screenshot": null,
+      "url": "/explorer",
+      "innerWidth": 1280,
+      "innerHeight": 800,
+      "docScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 19,
+      "tinyInteractive": [
+        {
+          "tag": "input",
+          "className": "w-full bg-transparent outline-none text-gray-700 placeholder-gray-500",
+          "text": "",
+          "width": 797.5,
+          "height": 24,
+          "minDim": 24
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "nvidia/nemotron-3-nano-30b-a3b",
+          "width": 246.8,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 63.1,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "x-ai/grok-4.1-fast",
+          "width": 246.8,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 63.1,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "anthropic/claude-opus-4.5",
+          "width": 246.8,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 63.1,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "openai/gpt-5.2",
+          "width": 246.8,
+          "height": 20,
+          "minDim": 20
+        },
+        {
+          "tag": "a",
+          "className": "text-gray-400 hover:text-indigo-600",
+          "text": "",
+          "width": 63.1,
+          "height": 16,
+          "minDim": 16
+        },
+        {
+          "tag": "a",
+          "className": "hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] lg:max-w-none truncate lg:white",
+          "text": "google/gemini-3-flash-preview",
+          "width": 246.8,
+          "height": 20,
+          "minDim": 20
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "phone-320x568-p",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 320,
+      "innerHeight": 568,
+      "docScrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 2,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "phone-568x320-l",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 568,
+      "innerHeight": 320,
+      "docScrollWidth": 568,
+      "bodyScrollWidth": 568,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 2,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "phone-375x812-p",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 375,
+      "innerHeight": 812,
+      "docScrollWidth": 375,
+      "bodyScrollWidth": 375,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 2,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "phone-812x375-l",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 812,
+      "innerHeight": 375,
+      "docScrollWidth": 812,
+      "bodyScrollWidth": 812,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "phone-390x844-p",
+      "screenshot": "viewport-screens\\compare__phone-390x844-p.png",
+      "url": "/compare",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 2,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        },
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "phone-844x390-l",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 844,
+      "innerHeight": 390,
+      "docScrollWidth": 844,
+      "bodyScrollWidth": 844,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "tablet-768x1024-p",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 768,
+      "innerHeight": 1024,
+      "docScrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "tablet-1024x768-l",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "tablet-834x1194-p",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 834,
+      "innerHeight": 1194,
+      "docScrollWidth": 834,
+      "bodyScrollWidth": 834,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "tablet-1194x834-l",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 1194,
+      "innerHeight": 834,
+      "docScrollWidth": 1194,
+      "bodyScrollWidth": 1194,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "desktop-1024x1366",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 1024,
+      "innerHeight": 1366,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/compare",
+      "viewport": "desktop-1280x800",
+      "screenshot": null,
+      "url": "/compare",
+      "innerWidth": 1280,
+      "innerHeight": 800,
+      "docScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "text-blue-600 hover:underline mt-2 inline-block",
+          "text": "Go back to Explorer",
+          "width": 149.3,
+          "height": 24,
+          "minDim": 24
+        }
+      ]
+    },
+    {
+      "route": "/runs",
+      "viewport": "phone-320x568-p",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 320,
+      "innerHeight": 568,
+      "docScrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/runs",
+      "viewport": "phone-568x320-l",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 568,
+      "innerHeight": 320,
+      "docScrollWidth": 568,
+      "bodyScrollWidth": 568,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/runs",
+      "viewport": "phone-375x812-p",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 375,
+      "innerHeight": 812,
+      "docScrollWidth": 375,
+      "bodyScrollWidth": 375,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/runs",
+      "viewport": "phone-812x375-l",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 812,
+      "innerHeight": 375,
+      "docScrollWidth": 812,
+      "bodyScrollWidth": 812,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs",
+      "viewport": "phone-390x844-p",
+      "screenshot": "viewport-screens\\runs__phone-390x844-p.png",
+      "url": "/runs",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/runs",
+      "viewport": "phone-844x390-l",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 844,
+      "innerHeight": 390,
+      "docScrollWidth": 844,
+      "bodyScrollWidth": 844,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs",
+      "viewport": "tablet-768x1024-p",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 768,
+      "innerHeight": 1024,
+      "docScrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs",
+      "viewport": "tablet-1024x768-l",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs",
+      "viewport": "tablet-834x1194-p",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 834,
+      "innerHeight": 1194,
+      "docScrollWidth": 834,
+      "bodyScrollWidth": 834,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs",
+      "viewport": "tablet-1194x834-l",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 1194,
+      "innerHeight": 834,
+      "docScrollWidth": 1194,
+      "bodyScrollWidth": 1194,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs",
+      "viewport": "desktop-1024x1366",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 1024,
+      "innerHeight": 1366,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs",
+      "viewport": "desktop-1280x800",
+      "screenshot": null,
+      "url": "/runs",
+      "innerWidth": 1280,
+      "innerHeight": 800,
+      "docScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "viewport": "phone-390x844-p",
+      "screenshot": "viewport-screens\\explorer-nvidia-2Fnemotron-3-nano-30b-a3b__phone-390x844-p.png",
+      "url": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "viewport": "tablet-834x1194-p",
+      "screenshot": null,
+      "url": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "innerWidth": 834,
+      "innerHeight": 1194,
+      "docScrollWidth": 834,
+      "bodyScrollWidth": 834,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "viewport": "desktop-1024x1366",
+      "screenshot": null,
+      "url": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "innerWidth": 1024,
+      "innerHeight": 1366,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "viewport": "desktop-1280x800",
+      "screenshot": null,
+      "url": "/explorer/nvidia%2Fnemotron-3-nano-30b-a3b",
+      "innerWidth": 1280,
+      "innerHeight": 800,
+      "docScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "viewport": "phone-390x844-p",
+      "screenshot": "viewport-screens\\runs-5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd__phone-390x844-p.png",
+      "url": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "docScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 1,
+      "tinyInteractive": [
+        {
+          "tag": "a",
+          "className": "flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity group min-w-0",
+          "text": "AI Psychometrics Lab",
+          "width": 32,
+          "height": 32,
+          "minDim": 32
+        }
+      ]
+    },
+    {
+      "route": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "viewport": "tablet-834x1194-p",
+      "screenshot": null,
+      "url": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "innerWidth": 834,
+      "innerHeight": 1194,
+      "docScrollWidth": 834,
+      "bodyScrollWidth": 834,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "viewport": "desktop-1024x1366",
+      "screenshot": null,
+      "url": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "innerWidth": 1024,
+      "innerHeight": 1366,
+      "docScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    },
+    {
+      "route": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "viewport": "desktop-1280x800",
+      "screenshot": null,
+      "url": "/runs/5dafd6f5-3f35-42be-aa86-9d9e8a7b30fd",
+      "innerWidth": 1280,
+      "innerHeight": 800,
+      "docScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "horizontalOverflow": 0,
+      "tinyInteractiveCount": 0,
+      "tinyInteractive": []
+    }
+  ]
+}

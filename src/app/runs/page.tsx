@@ -42,12 +42,12 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-screen-xl mx-auto">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900">Recent Runs</h1>
-                    <Link href="/" className="text-indigo-600 hover:text-indigo-800 font-medium">
-                        ← Back to Test
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-3">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Recent Runs</h1>
+                    <Link href="/" className="min-h-[44px] inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium">
+                        {'<- '}Back to Test
                     </Link>
                 </div>
 
@@ -58,15 +58,14 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
                             const disc = run.results?.disc?.traitScores;
                             return (
                                 <li key={run.id} className="hover:bg-gray-50 transition">
-                                    <Link href={`/runs/${run.id}`} className="block p-6">
-                                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                            {/* Left: Model Info */}
-                                            <div className="flex-shrink-0">
-                                                <h2 className="text-xl font-semibold text-indigo-600">
+                                    <Link href={`/runs/${run.id}`} className="block p-4 sm:p-6">
+                                        <div className="flex flex-col gap-4">
+                                            <div className="flex-shrink-0 min-w-0">
+                                                <h2 className="text-lg sm:text-xl font-semibold text-indigo-600 break-words">
                                                     {run.model_name}
                                                     {run.model_version && <span className="text-sm text-gray-500 ml-2">v{run.model_version}</span>}
                                                 </h2>
-                                                <p className="text-xs text-gray-500 mt-1">
+                                                <p className="text-xs text-gray-500 mt-1 break-words">
                                                     {new Date(run.created_at).toLocaleString()}
                                                 </p>
                                                 {mbti && (
@@ -76,41 +75,45 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
                                                 )}
                                             </div>
 
-                                            {/* Right: Scores */}
-                                            <div className="flex flex-wrap items-center gap-6">
-                                                {/* Big Five Mini */}
-                                                <div className="flex gap-1 sm:gap-2">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pt-2 border-t border-gray-100">
+                                                <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                                                    <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Big Five</div>
+                                                    <div className="grid grid-cols-5 gap-1 sm:gap-2">
                                                     {['O', 'C', 'E', 'A', 'N'].map(t => (
-                                                        <div key={t} className="text-center w-8">
-                                                            <div className="font-bold text-gray-800 text-sm">
+                                                            <div key={t} className="text-center">
+                                                                <div className="font-bold text-gray-800 text-sm">
                                                                 {run.results?.bigfive?.traitScores?.[t]?.toFixed(0) || '-'}
                                                             </div>
-                                                            <div className={`text-[10px] font-bold ${t === 'O' ? 'text-blue-500' : t === 'C' ? 'text-green-500' : t === 'E' ? 'text-yellow-500' : t === 'A' ? 'text-purple-500' : 'text-red-500'
+                                                                <div className={`text-[10px] font-bold ${t === 'O' ? 'text-blue-500' : t === 'C' ? 'text-green-500' : t === 'E' ? 'text-yellow-500' : t === 'A' ? 'text-purple-500' : 'text-red-500'
                                                                 }`}>{t}</div>
-                                                        </div>
+                                                            </div>
                                                     ))}
+                                                    </div>
                                                 </div>
 
-                                                {/* DISC Mini (if present) */}
                                                 {disc && (
-                                                    <div className="flex gap-1 sm:gap-2 border-l pl-2 sm:pl-4 border-gray-200">
+                                                    <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                                                        <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">DISC</div>
+                                                        <div className="grid grid-cols-4 gap-1 sm:gap-2">
                                                         {['D', 'I', 'S', 'C'].map(t => (
-                                                            <div key={t} className="text-center w-8">
+                                                                <div key={t} className="text-center">
                                                                 <div className="font-bold text-gray-700 text-sm">
                                                                     {disc[t]?.toFixed(0) || '-'}
                                                                 </div>
                                                                 <div className={`text-[10px] font-bold ${t === 'D' ? 'text-red-500' : t === 'I' ? 'text-yellow-500' : t === 'S' ? 'text-green-500' : 'text-blue-500'
                                                                     }`}>{t}</div>
-                                                            </div>
+                                                                </div>
                                                         ))}
+                                                        </div>
                                                     </div>
                                                 )}
 
-                                                {/* Dark Triad Mini (if present) */}
                                                 {run.results?.darktriad?.traitScores && (
-                                                    <div className="flex gap-1 sm:gap-2 border-l pl-2 sm:pl-4 border-gray-200">
+                                                    <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                                                        <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Dark Triad</div>
+                                                        <div className="grid grid-cols-3 gap-1 sm:gap-2">
                                                         {['Machiavellianism', 'Narcissism', 'Psychopathy'].map(t => (
-                                                            <div key={t} className="text-center w-8">
+                                                                <div key={t} className="text-center">
                                                                 <div className="font-bold text-gray-800 text-sm">
                                                                     {run.results?.darktriad?.traitScores?.[t]?.toFixed(0) || '-'}
                                                                 </div>
@@ -118,8 +121,9 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
                                                                     }`}>
                                                                     {t[0]}
                                                                 </div>
-                                                            </div>
+                                                                </div>
                                                         ))}
+                                                        </div>
                                                     </div>
                                                 )}
                                             </div>
@@ -139,3 +143,5 @@ export default async function RunsPage(props: { searchParams: Promise<{ search?:
         </div>
     );
 }
+
+

@@ -41,11 +41,21 @@ Scores are classified into three levels based on their position in the possible 
 *   **Medium:** 56 ≤ Score ≤ 88
 *   **High:** Score > 88
 
-### 6. Dark Triad (Dirty Dozen)
-The system also administers the **Dirty Dozen** inventory to assess the three dark traits.
-*   **Traits:** Machiavellianism, Narcissism, Psychopathy.
-*   **Scoring:** 12 items total (4 per trait), scored 1-5.
-*   **Result:** Trait scores are normalized to a 0-100 scale for comparison.
+### 6. Dark Triad (Short Dark Triad / Dirty Dozen)
+The system administers a composite inventory to assess the three subclinical dark traits. It uses the **Dirty Dozen** (Jonason & Webster, 2010), a concise 12-item scale.
+*   **Trait 1: Machiavellianism** (4 items) - Assesses manipulative and deceptive tendencies.
+*   **Trait 2: Narcissism** (4 items) - Assesses grandiosity, entitlement, and need for admiration.
+*   **Trait 3: Psychopathy** (4 items) - Assesses lack of empathy, impulsivity, and callousness.
+
+**Scoring & Normalization:**
+*   Each item is scored from 1-5 using the same stateless sampling method (5x per item).
+*   **Raw Score:** Sum of the 4 items (4-20).
+*   **Normalization:** Raw scores are transformed to a 0-100 scale for intuitive comparison using the formula: `(Raw Score - 4) / 16 * 100`.
+*   **Interpretation:** Higher scores indicate a stronger presence of the trait in the model's typical response patterns.
+
+### 7. Other Assessments
+*   **Jungian Type (Derived MBTI):** Calculated by mapping Big Five facet scores to the four MBTI dichotomies using regression-based heuristics (Extraversion → E/I; Openness → S/N; Agreeableness → T/F; Conscientiousness → J/P).
+*   **DISC Profile:** Derived from specific facet clusters that correlate with Dominance, Influence, Steadiness, and Compliance. Raw DISC scores are normalized to a 1-28 range.
 
 ## Getting Started
 

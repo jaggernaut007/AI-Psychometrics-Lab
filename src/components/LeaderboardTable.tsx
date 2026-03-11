@@ -170,7 +170,7 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
     };
 
     // Header Helper
-    const SortableHeader = ({ field, label, color, traitKey }: { field: SortField, label: string, color: string, traitKey?: string }) => (
+    const renderSortableHeader = ({ field, label, color, traitKey }: { field: SortField, label: string, color: string, traitKey?: string }) => (
         <th
             className={`px-2 py-3 text-center uppercase cursor-pointer hover:bg-gray-100 transition group relative ${color}`}
             onClick={() => handleSort(field)}
@@ -185,10 +185,12 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
         </th>
     );
 
+    const compareHref = selectedModels.length >= 2 ? `/compare?ids=${selectedModels.map(encodeURIComponent).join(',')}` : '#';
+
     return (
         <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100 relative">
             {/* Search Bar & Actions */}
-            <div className="p-4 border-b border-gray-100 bg-gray-50 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            <div className="p-4 border-b border-gray-100 bg-gray-50 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 md:gap-4">
                 <div className="flex items-center gap-3 flex-1 bg-white md:bg-transparent p-2 md:p-0 rounded border md:border-none border-gray-200" suppressHydrationWarning>
                     <Search className="w-5 h-5 text-gray-400" />
                     <input
@@ -196,43 +198,117 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
                         placeholder="Search models..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full bg-transparent outline-none text-gray-700 placeholder-gray-500"
+                        className="w-full min-h-[44px] bg-transparent outline-none text-gray-700 placeholder-gray-500"
                     />
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
                     {/* Persona Filter */}
                     <select
                         value={personaFilter}
                         onChange={(e) => setPersonaFilter(e.target.value)}
-                        className="p-2 border border-gray-300 rounded text-sm bg-white text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500 flex-1 md:flex-none"
+                        className="min-h-[44px] p-2 border border-gray-300 rounded text-sm bg-white text-gray-900 outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-auto"
                     >
                         <option>Base Models Only</option>
                         <option>All Personas</option>
                         {availablePersonas.map(p => <option key={p}>{p}</option>)}
                     </select>
 
-                    <div className="flex items-center gap-2">
-                        <Link
-                            href={selectedModels.length >= 2 ? `/compare?ids=${selectedModels.map(encodeURIComponent).join(',')}` : '#'}
-                            aria-disabled={selectedModels.length < 2}
-                            onClick={(e) => {
-                                if (selectedModels.length < 2) e.preventDefault();
-                            }}
-                            className={`auth-button flex items-center gap-2 px-4 py-2 rounded-md transition shadow-sm whitespace-nowrap ${selectedModels.length >= 2
-                                ? 'bg-indigo-600 text-white hover:bg-indigo-700 cursor-pointer animate-in fade-in'
-                                : 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200'
-                                }`}
-                            title={selectedModels.length < 2 ? "Select at least 2 models to compare" : "Compare selected models"}
-                        >
-                            <BarChart2 className={`w-4 h-4 ${selectedModels.length >= 2 ? '' : 'text-gray-400'}`} />
-                            Compare ({selectedModels.length}/3)
-                        </Link>
-                    </div>
+                    <Link
+                        href={compareHref}
+                        aria-disabled={selectedModels.length < 2}
+                        onClick={(e) => {
+                            if (selectedModels.length < 2) e.preventDefault();
+                        }}
+                        className={`auth-button min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md transition shadow-sm whitespace-nowrap w-full sm:w-auto min-w-[44px] ${selectedModels.length >= 2
+                            ? 'bg-indigo-600 text-white hover:bg-indigo-700 cursor-pointer animate-in fade-in'
+                            : 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200'
+                            }`}
+                        title={selectedModels.length < 2 ? "Select at least 2 models to compare" : "Compare selected models"}
+                    >
+                        <BarChart2 className={`w-4 h-4 ${selectedModels.length >= 2 ? '' : 'text-gray-400'}`} />
+                        Compare ({selectedModels.length}/3)
+                    </Link>
                 </div>
             </div>
 
-            <div className="overflow-x-auto min-h-[500px]">
+            <div className="md:hidden p-4 space-y-3">
+                {sortedData.map((model) => (
+                    <article
+                        key={`mobile-${model.id}`}
+                        className={`rounded-xl border p-4 transition-colors ${selectedModels.includes(model.id) ? 'bg-indigo-50 border-indigo-200' : 'bg-white border-gray-200'}`}
+                    >
+                        <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                                <Link
+                                    href={`/explorer/${encodeURIComponent(model.name)}`}
+                                    className="text-base font-bold text-gray-900 hover:text-indigo-600 break-words leading-6 min-h-[44px] inline-flex items-center"
+                                >
+                                    {model.name}
+                                </Link>
+                                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                                    {model.persona !== 'Base Model' ? (
+                                        <span className="inline-flex items-center rounded bg-gray-100 border border-gray-200 px-2 py-0.5">{model.persona}</span>
+                                    ) : (
+                                        <span>Base Model</span>
+                                    )}
+                                    <span>{model.count} runs</span>
+                                    <span className="font-mono text-indigo-600 font-semibold">{model.mbti}</span>
+                                </div>
+                            </div>
+                            <label className="inline-flex items-center gap-2 text-xs font-medium text-gray-600 min-h-[44px]">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedModels.includes(model.id)}
+                                    onChange={() => toggleSelection(model.id)}
+                                    className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                />
+                                Compare
+                            </label>
+                        </div>
+
+                        <div className="mt-3 grid grid-cols-5 gap-2 text-center">
+                            {['O', 'C', 'E', 'A', 'N'].map((trait) => (
+                                <div key={`m-b5-${model.id}-${trait}`} className="rounded bg-gray-50 border border-gray-100 py-1.5">
+                                    <div className={`text-xs font-semibold ${getScoreColor(model.scores[trait] || 0, 'bigfive')}`}>
+                                        {model.scores[trait]?.toFixed(0) || '-'}
+                                    </div>
+                                    <div className="text-[10px] text-gray-500">{trait}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-2 grid grid-cols-4 gap-2 text-center">
+                            {['D', 'I', 'S', 'C'].map((trait) => (
+                                <div key={`m-disc-${model.id}-${trait}`} className="rounded bg-gray-50 border border-gray-100 py-1.5">
+                                    <div className={`text-xs font-semibold ${getScoreColor(model.disc[trait] || 0, 'disc')}`}>
+                                        {typeof model.disc[trait] === 'number' ? model.disc[trait].toFixed(1) : '-'}
+                                    </div>
+                                    <div className="text-[10px] text-gray-500">{trait}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-2 text-xs text-gray-600 flex flex-wrap gap-x-3 gap-y-1">
+                            <span className="font-semibold text-blue-900">M {model.darkTriad?.['Machiavellianism']?.toFixed(0) || '-'}</span>
+                            <span className="font-semibold text-purple-800">N {model.darkTriad?.['Narcissism']?.toFixed(0) || '-'}</span>
+                            <span className="font-semibold text-red-900">P {model.darkTriad?.['Psychopathy']?.toFixed(0) || '-'}</span>
+                        </div>
+
+                        <div className="mt-3">
+                            <Link
+                                href={`/runs?search=${encodeURIComponent(model.name)}`}
+                                className="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-700 min-h-[44px]"
+                            >
+                                <Info className="w-4 h-4" />
+                                View runs
+                            </Link>
+                        </div>
+                    </article>
+                ))}
+            </div>
+
+            <div className="hidden md:block overflow-x-auto min-h-[500px]">
                 <table className="min-w-full divide-y divide-gray-200 text-sm">
                     <thead className="bg-gray-50">
                         <tr>
@@ -248,24 +324,23 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
                                     {sortField === 'name' && <ArrowUpDown className={`w-3 h-3 ${sortDirection === 'asc' ? 'rotate-180' : ''}`} />}
                                 </div>
                             </th>
-                            <SortableHeader field="count" label="Runs" color="text-gray-500" />
-                            <SortableHeader field="mbti" label="MBTI" color="text-indigo-600" />
+                            {renderSortableHeader({ field: 'count', label: 'Runs', color: 'text-gray-500' })}
+                            {renderSortableHeader({ field: 'mbti', label: 'MBTI', color: 'text-indigo-600' })}
 
-                            <SortableHeader field="O" label="Open" color="text-blue-600" traitKey="O" />
-                            <SortableHeader field="C" label="Cons" color="text-green-600" traitKey="C" />
-                            <SortableHeader field="E" label="Extr" color="text-yellow-600" traitKey="E" />
-                            <SortableHeader field="A" label="Agre" color="text-purple-600" traitKey="A" />
-                            <SortableHeader field="N" label="Neur" color="text-red-600" traitKey="N" />
+                            {renderSortableHeader({ field: 'O', label: 'Open', color: 'text-blue-600', traitKey: 'O' })}
+                            {renderSortableHeader({ field: 'C', label: 'Cons', color: 'text-green-600', traitKey: 'C' })}
+                            {renderSortableHeader({ field: 'E', label: 'Extr', color: 'text-yellow-600', traitKey: 'E' })}
+                            {renderSortableHeader({ field: 'A', label: 'Agre', color: 'text-purple-600', traitKey: 'A' })}
+                            {renderSortableHeader({ field: 'N', label: 'Neur', color: 'text-red-600', traitKey: 'N' })}
 
-                            <SortableHeader field="disc-D" label="Dom" color="text-red-500 border-l border-gray-200" traitKey="disc-D" />
-                            <SortableHeader field="disc-I" label="Inf" color="text-yellow-500" traitKey="disc-I" />
-                            <SortableHeader field="disc-S" label="Std" color="text-green-500" traitKey="disc-S" />
+                            {renderSortableHeader({ field: 'disc-D', label: 'Dom', color: 'text-red-500 border-l border-gray-200', traitKey: 'disc-D' })}
+                            {renderSortableHeader({ field: 'disc-I', label: 'Inf', color: 'text-yellow-500', traitKey: 'disc-I' })}
+                            {renderSortableHeader({ field: 'disc-S', label: 'Std', color: 'text-green-500', traitKey: 'disc-S' })}
+                            {renderSortableHeader({ field: 'disc-C', label: 'Com', color: 'text-blue-500', traitKey: 'disc-C' })}
 
-                            <SortableHeader field="disc-C" label="Com" color="text-blue-500" traitKey="disc-C" />
-
-                            <SortableHeader field="dt-Machiavellianism" label="M" color="text-blue-900 font-bold border-l border-gray-200" traitKey="dt-Machiavellianism" />
-                            <SortableHeader field="dt-Narcissism" label="N" color="text-purple-800 font-bold" traitKey="dt-Narcissism" />
-                            <SortableHeader field="dt-Psychopathy" label="P" color="text-red-900 font-bold" traitKey="dt-Psychopathy" />
+                            {renderSortableHeader({ field: 'dt-Machiavellianism', label: 'M', color: 'text-blue-900 font-bold border-l border-gray-200', traitKey: 'dt-Machiavellianism' })}
+                            {renderSortableHeader({ field: 'dt-Narcissism', label: 'N', color: 'text-purple-800 font-bold', traitKey: 'dt-Narcissism' })}
+                            {renderSortableHeader({ field: 'dt-Psychopathy', label: 'P', color: 'text-red-900 font-bold', traitKey: 'dt-Psychopathy' })}
 
                             <th className="px-4 py-3 text-center font-bold text-gray-500 uppercase tracking-wider">Action</th>
                         </tr>
@@ -282,11 +357,11 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
                                     />
                                 </td>
                                 <td className="px-4 py-3 whitespace-nowrap font-bold text-gray-900 sticky left-10 bg-white z-20">
-                                    <Link href={`/explorer/${encodeURIComponent(model.name)}`} className="hover:text-indigo-600 underline decoration-dotted underline-offset-4 block max-w-[120px] sm:max-w-none truncate sm:whitespace-normal">
+                                    <Link href={`/explorer/${encodeURIComponent(model.name)}`} className="hover:text-indigo-600 underline decoration-dotted underline-offset-4 inline-flex items-center min-h-[44px] max-w-[120px] lg:max-w-none truncate lg:whitespace-normal">
                                         {model.name}
                                     </Link>
                                     {model.persona !== 'Base Model' && (
-                                        <div className="text-xs font-normal text-gray-500 mt-1 inline-block ml-2 bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">
+                                        <div className="text-xs font-normal text-gray-500 mt-1 inline-block bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">
                                             {model.persona}
                                         </div>
                                     )}
@@ -326,7 +401,7 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
                                 </td>
 
                                 <td className="px-4 py-3 whitespace-nowrap text-center font-medium">
-                                    <Link href={`/runs?search=${encodeURIComponent(model.name)}`} className="text-gray-400 hover:text-indigo-600">
+                                    <Link href={`/runs?search=${encodeURIComponent(model.name)}`} className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-gray-400 hover:text-indigo-600">
                                         <Info className="w-4 h-4 mx-auto" />
                                     </Link>
                                 </td>
@@ -335,6 +410,7 @@ export function LeaderboardTable({ data }: LeaderboardTableProps) {
                     </tbody>
                 </table>
             </div>
+
             {sortedData.length === 0 && (
                 <div className="p-10 text-center text-gray-500">
                     {data.length === 0 ? "No data available yet." : "No matching models found."}
